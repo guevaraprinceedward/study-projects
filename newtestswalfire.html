@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataTable Sample - Editable</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- Self-Made CSS -->
+     <link rel="stylesheet" href="newtestswalfire.css">
+
+     <!-- Self-Made CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1 class="mb-3 text-center">Sample Data Table</h1>
+
+    <!-- Add User Button -->
+    <div class="card p-3 mb-4" style="text-align: center; align-items: center;">
+        <h5>Add User (+)</h5>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary-first w-100" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="add-user-btn">
+                Add User
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table id="myTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pangalan</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center; align-items: center;">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      
+      <div class="modal-body">
+        <!-- Form inside modal -->
+        <form id="addUserForm">
+          <div class="mb-3">
+            <label for="userId" class="form-label">ID: </label>
+            <input type="text" class="form-control" id="userId" required>
+
+                <div class="invalid-feedback"> Please put a first name. </div>
+                  <div class="valid-feedback">Looks good!</div>
+
+          </div>
+          <div class="mb-3">
+            <label for="userName" class="form-label">Name: </label>
+            <input type="text" class="form-control" id="userName" required>
+          </div>
+          <div class="mb-3">
+            <label for="userEmail" class="form-label">Email: </label>
+            <input type="email" class="form-control" id="userEmail" required>
+          </div>
+          <div class="mb-3">
+            <label for="userAge" class="form-label">Age: </label>
+            <input type="number" class="form-control" id="userAge" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveUserBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<!-- Bootstrap 5 JS bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    // Initial data
+    const tableRows = [
+
+        { "id": "1", "name": "Pablo", "email": "montecarlotechnologies@email.com", "age": "29" },
+        { "id": "2", "name": "Prince Edward Guevara", "email": "guevaraprinceedward@email.com", "age": "16" },
+        { "id": "3", "name": "Web Master", "email": "webmaster@email.com", "age": "???" },
+
+    ];
+
+    // Initialize DataTable
+    const table = $('#myTable').DataTable({
+        data: tableRows,
+        columns: [
+            { data: 'id', title: 'ID' },
+            { data: 'name', title: 'Username' },
+            { data: 'email', title: 'Email' },
+            { data: 'age', title: 'Age' },
+            {
+
+                // Pwede I-Edit or I-delete yung information na nakalagay sa loob ng table row.
+
+                data: null,
+                title: 'Action',
+                render: function () {
+                    return `
+                        <button class="btn btn-sm btn-warning editBtn">Edit</button>
+                        <button class="btn btn-sm btn-danger deleteBtn">Delete</button>
+                    `;
+                }
+            }
+        ]
+    });
+
+    // Save User from Vodal, kukunin yung new person information sa mismong Vodal na form.
+
+    $('#saveUserBtn').on('click', function () {
+        const newUser = {
+            id: $('#userId').val().trim(),
+            name: $('#userName').val().trim(),
+            email: $('#userEmail').val().trim(),
+            age: $('#userAge').val().trim()
+        };
+
+        // Simple Validation, kapag kulang yung information, mag-eeror yan agad kasi kailangan munang i-fillup lahat na nasa input.
+        if (!newUser.id || !newUser.name || !newUser.email || !newUser.age) {
+            Swal.fire({
+              title: "Oops!",
+              text: "Please fill in all fields.",
+              icon: "error"
+            });
+            return;
+        }
+
+        // Check for Duplicate ID, meaning na kapag kaparehas yung information na ilalagay mo, mag-eeror yan kasi mayroon na yung info na ilalagay mo.
+        const existingIds = table.column(0).data().toArray();
+        if (existingIds.includes(newUser.id)) {
+            Swal.fire({
+              title: "This ID is already in table!",
+              text: "This ID already exists in the table.",
+              icon: "warning"
+            });
+            return;
+        }
+
+        // Add to DataTable, i-aaddd yung bagong information sa mismong table row.
+        table.row.add(newUser).draw();
+
+        // Reset form and close modal, sasaraduhin or i-eexit yung add form.
+        $('#addUserForm')[0].reset();
+        var modal = bootstrap.Modal.getInstance(document.getElementById('exampleModalCenter'));
+        modal.hide();
+
+        // Show SweetAlert success message
+        Swal.fire({
+          title: "Good job!",
+          text: "User has been added in the table tab successfully!",
+          icon: "success"
+        });
+    });
+
+    // Handle Add User Form, ito naman yung sa form na i-add sa mismong table.
+    $('#addUserForm').on('submit', function (e) {
+        e.preventDefault();
+
+        const newUser = {
+            id: $('#userId').val(),
+            name: $('#userName').val(),
+            email: $('#userEmail').val(),
+            age: $('#userAge').val()
+        };
+
+        table.row.add(newUser).draw();
+        this.reset();
+    });
+
+    // Handle Delete, i-dedelte yung mismong information mula sa table row.
+    $('#myTable tbody').on('click', '.deleteBtn', function () {
+        table.row($(this).parents('tr')).remove().draw();
+    });
+
+    // Handle Edit, babaguhin yung details/information ng user.
+    $('#myTable tbody').on('click', '.editBtn', function () {
+        const row = table.row($(this).parents('tr'));
+        const data = row.data();
+
+        // Fill form with existing data, ito naman yung fill-up form.
+        $('#userId').val(data.id);
+        $('#userName').val(data.name);
+        $('#userEmail').val(data.email);
+        $('#userAge').val(data.age);
+
+
+
+        // Remove the old row (so when we resubmit, it's updated)
+        row.remove().draw();
+    });
+
+});
+
+
+
+
+</script>
+
+</body>
+</html>

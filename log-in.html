@@ -1,0 +1,245 @@
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+
+         .login-box {
+
+	width: 320px;
+   	padding: 30px;
+   	background: #ffffff;
+   	border-radius: 15px;
+   	text-align: center;
+   	transition: 0.5s ease;
+   	box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+   	animation: slideInLeft 1s ease-out;
+   	transform: translateY(0);
+
+ }
+
+ @keyframes slideInLeft {
+
+    0% {
+
+        transform: translateX(-50px);
+        opacity: 0;
+
+    }
+
+    100% {
+
+        transform: translateX(0);
+        opacity: 1;
+
+    }
+
+
+
+
+
+
+ }
+
+
+
+
+
+ .login-box:hover {
+
+	transform: translateY(-15px);
+   	color: #EBF4DD;
+   	background-color: #5A7863;
+   	box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+
+ }
+
+ .login-box h2 {
+
+	margin-bottom: 20px;
+
+ }
+
+ .login-box input {
+
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	outline: none;
+
+ }
+
+ .login-box button {
+
+	width: 100%;
+	padding: 10px;
+	background: #2563eb;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: 0.3s ease;
+
+ }
+
+
+
+
+
+
+ .login-box button:hover {
+
+	background: #fff;
+	color: #2563eb;
+
+ }
+
+ #message {
+
+	margin-top: 15px;
+	font-weight: bold;
+
+ }
+
+
+ .message-type {
+
+	margin-top: 15px;
+	font-weight: bold;
+	opacity: 0;
+	transform: translateX(40px);
+	transition: all 0.5 ease;
+	user-select: none;
+
+ }
+
+
+ .message-type.show {
+
+	opacity: 1;
+	transform: translateX(0);
+	animation: fadeIn 1.3s ease;
+	user-select: none;
+ }
+
+ .login-box:hover {
+
+   transform: translateY(-15px);
+   color: #000;
+   background-color: #FAF3E1;
+   box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+
+ }
+
+ .button-login {
+
+    border: none;
+    background: #715A5A;
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 15px;
+ }
+
+
+
+
+
+
+    </style>
+
+
+
+</head>
+
+<body style="   background-color: grey;
+   margin: auto;
+   font-family: Inter, sans-serif;
+   padding: 22px;">
+
+<div style="text-align: center; width: 100%; display: flex; justify-content: center; margin: 45px;">
+
+			<div class="login-box">
+			
+				<h2> Login </h2>
+
+				<input type="text" id="username" placeholder="Username">
+				<input type="password" id="password" placeholder="Password">
+				
+				<div style="width: 100%; display: flex; justify-content: center;">
+
+				<button class="button-login" onclick="login()"> <strong> Login </strong> </button>
+
+				</div>
+
+				<div style="justify-content: center;">
+					<strong> <p id="message" class="message-type"> This is our Website.</p> </strong>
+				</div>
+
+			</div>
+</div>
+
+
+
+			<script>
+
+			function login() {
+				
+				const correctUsername = "AdminControl";
+				const correctPassword = "Admin_Controlization";
+
+				const username = document.getElementById("username").value;
+				const password = document.getElementById("password").value;
+				const message = document.getElementById("message");
+
+			
+				message.classList.remove("show");
+
+		setTimeout(() => {
+
+			if (username === correctUsername && password === correctPassword) {
+				
+				message.style.color = "green";
+				message.textContent = "Login Sucessful! Welcome our Admin Creator.";
+
+					Swal.fire({
+						title: 'You Logged-In into our website.',
+						text: 'You managed to open your account!',
+						icon: 'success',
+						customClass: {
+							popup: 'my-swal',
+							title: 'my-title',
+						}
+
+					});
+
+					setTimeout(() => {
+						window.location.href = "https://ayosnegosyoph.com/admin/login";
+					}, 1500);
+
+			} else {
+
+				message.style.color = "red";
+				message.textContent = "Access Denied! You should try it again. ";
+			}
+
+				message.classList.add("show");
+			}, 50);
+
+
+			
+			}
+		
+			</script>
+
+
+
+
+
+
+</body>
+</html>

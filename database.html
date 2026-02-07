@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataTable Sample - One File</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS (after Bootstrap) -->
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1 class="mb-3" style="text-align: center; align-items: center;">Sample DataTable</h1>
+
+    <table id="myTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pangalan</th>
+                <th>Email</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody id="DataTable">
+
+        </tbody>
+    </table>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<!-- JavaScript -->
+<script>
+
+$(document).ready(function () {
+
+    const tableRows = [
+  { "id": "1", "name": "Juan Dela Cruz", "email": "juan@email.com", "age": "25" },
+  { "id": "2", "name": "Maria Santos", "email": "maria@email.com", "age": "22" },
+  { "id": "3", "name": "Pedro Reyes", "email": "pedro@email.com", "age": "30" },
+  { "id": "4", "name": "Jannel Torres", "email": "janneltorres@email.com", "age": "16" },
+  { "id": "5", "name": "Csymone Laguio", "email": "csymonelaguio@email.com", "age": "16" },
+  { "id": "6", "name": "Kaye Petil", "email": "kayepetil@email.com", "age": "16" },
+  { "id": "7", "name": "Mark Andrei Vertudez", "email": "markandreivertudez@email.com", "age": "17" },
+  { "id": "8", "name": "Janela Ann Isles", "email": "janelaannisles@email.com", "age": "22" },
+  { "id": "8", "name": "Pablo", "email": "webmaster@email.com", "age": "27" },
+  { "id": "9", "name": "Syndy Amagan", "email": "syndyamagan@email.com", "age": "16" },
+  { "id": "10", "name": "Ezekiel Flores", "email": "ezekielflores@email.com", "age": "16" },
+  { "id": "11", "name": "Arthur Beauford", "email": "thebeauford@email.com", "age": "30" },
+  { "id": "12", "name": "John Paul Pedron", "email": "johnpaulpedron@email.com", "age": "16" },
+  { "id": "13", "name": "Aliyaah Pasugac", "email": "aliyaahpasugac@email.com", "age": "16" },
+  { "id": "14", "name": "Trisha Mae Simon Fujita", "email": "trishamaefujita@email.com", "age": "16" }
+];
+
+    $('#myTable').DataTable({
+        data: tableRows,
+        columns: [
+            { data: 'id', title: 'ID' },
+            { data: 'name', title: 'Username' },
+            { data: 'email', title: 'Email' },
+            { data: 'age', title: 'Age' },
+        ]
+    });
+
+});
+
+
+</script>
+
+</body>
+</html>
