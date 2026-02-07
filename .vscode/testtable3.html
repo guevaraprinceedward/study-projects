@@ -97,14 +97,21 @@
 </div>
 
 <!-- jQuery -->
+
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
 <!-- DataTables JS -->
+
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 <!-- Bootstrap 5 JS bundle -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!--TESTING-->
+
 <script>
+
 $(document).ready(function () {
+
   // Initial data
   const tableRows = [
     { "id": "1", "name": "Pablo", "email": "pablo@email.com", "age": "29", "image": "" },
@@ -120,6 +127,7 @@ $(document).ready(function () {
       { data: 'email', title: 'Email' },
       { data: 'age', title: 'Age' },
       {
+
         data: 'image',
         title: 'Image',
         render: function (data) {
@@ -127,6 +135,7 @@ $(document).ready(function () {
         }
       },
       {
+
         data: null,
         title: 'Action',
         render: function () {
@@ -139,77 +148,77 @@ $(document).ready(function () {
     ]
   });
 
-  // Preview selected image
-  $('#userImage').on('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        $('#previewImage').attr('src', e.target.result).show();
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // Save User
-  $('#saveUserBtn').on('click', function () {
-    const newUser = { 
-        id: $('#userId').val().trim(), 
-        name: $('#userName').val().trim(), 
-        email: $('#userEmail').val().trim(), 
-        age: $('#userAge').val().trim(), 
-        image: $('#previewImage').attr('src') || "" // allow empty 
-        };
-    
-        // Exception
-    if (!newUser.id || !newUser.name || !newUser.email || !newUser.age || !newUser.image) {
-        Swal.fire({
-            title: "Oops!",
-            text: "Please fill in all fields and upload an image.",
-            icon: "error"
+        // Preview selected image
+        $('#userImage').on('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $('#previewImage').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(file);
+            }
         });
+
+        // Save User
+        $('#saveUserBtn').on('click', function () {
+            const newUser = { 
+                id: $('#userId').val().trim(), 
+                name: $('#userName').val().trim(), 
+                email: $('#userEmail').val().trim(), 
+                age: $('#userAge').val().trim(), 
+                image: $('#previewImage').attr('src') || "" // allow empty 
+                };
+            
+                // Exception
+            if (!newUser.id || !newUser.name || !newUser.email || !newUser.age || !newUser.image) {
+                Swal.fire({
+                    title: "Oops!",
+                    text: "Please fill in all fields and upload an image.",
+                    icon: "error"
+                });
+                    return;
+                }
+
+
+                // ID Duplication Error
+            const existingIds = table.column(0).data().toArray();
+            if (existingIds.includes(newUser.id)) {
+            Swal.fire({ title: "Duplicate ID", text: "This ID already exists.", icon: "warning" });
             return;
-        }
+            }
 
+            table.row.add(newUser).draw();
 
-        // ID Duplication Error
-    const existingIds = table.column(0).data().toArray();
-    if (existingIds.includes(newUser.id)) {
-      Swal.fire({ title: "Duplicate ID", text: "This ID already exists.", icon: "warning" });
-      return;
-    }
+            $('#addUserForm')[0].reset();
+            $('#previewImage').hide();
+            var modal = bootstrap.Modal.getInstance(document.getElementById('exampleModalCenter'));
+            modal.hide();
 
-    table.row.add(newUser).draw();
+            Swal.fire({ title: "Good job!", text: "User added successfully!", icon: "success" });
+        });
 
-    $('#addUserForm')[0].reset();
-    $('#previewImage').hide();
-    var modal = bootstrap.Modal.getInstance(document.getElementById('exampleModalCenter'));
-    modal.hide();
+        // Delete
+        $('#myTable tbody').on('click', '.deleteBtn', function () {
+            table.row($(this).parents('tr')).remove().draw();
+        });
 
-    Swal.fire({ title: "Good job!", text: "User added successfully!", icon: "success" });
-  });
-
-  // Delete
-  $('#myTable tbody').on('click', '.deleteBtn', function () {
-    table.row($(this).parents('tr')).remove().draw();
-  });
-
-  // Edit
-  $('#myTable tbody').on('click', '.editBtn', function () {
-    const row = table.row($(this).parents('tr'));
-    const data = row.data();
-    $('#userId').val(data.id);
-    $('#userName').val(data.name);
-    $('#userEmail').val(data.email);
-    $('#userAge').val(data.age);
-    if (data.image) {
-      $('#previewImage').attr('src', data.image).show();
-    }
-    row.remove().draw();
-    var modal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
-    modal.show();
-  });
-});
+        // Edit
+        $('#myTable tbody').on('click', '.editBtn', function () {
+            const row = table.row($(this).parents('tr'));
+            const data = row.data();
+            $('#userId').val(data.id);
+            $('#userName').val(data.name);
+            $('#userEmail').val(data.email);
+            $('#userAge').val(data.age);
+            if (data.image) {
+            $('#previewImage').attr('src', data.image).show();
+            }
+            row.remove().draw();
+            var modal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
+            modal.show();
+        });
+        });
 </script>
 
 </body>
