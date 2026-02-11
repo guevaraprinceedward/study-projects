@@ -6,10 +6,21 @@
   <title>Guevara's Website</title>
 
   <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet">
+
+
+    <!-- Self-Made CSS -->
+     <link rel="stylesheet" href="newtestswalfire.css">
+
+     <!-- Self-Made CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
     body {
@@ -175,7 +186,13 @@
             }
 
             }
-    
+            
+    .data-table-body {
+
+        background-color: #BFC9D1;
+        padding: 45px 0px;
+
+    }
 
     
   </style>
@@ -272,6 +289,151 @@
     </div>
   </div>
 </section>
+
+<!-- Responsive DataTable Section -->
+<section class="data-table-body">
+<div class="container">
+<h2 class="text-center mb-4">User Management Table</h2>
+
+<div class="text-center mb-3">
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+Add User
+</button>
+</div>
+
+<div class="table-responsive">
+<table id="myTable" class="table table-striped nowrap" style="width:100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Age</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+© 2026 Prince Guevara. All rights reserved.
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Add / Edit User</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<form id="addUserForm">
+<input type="text" class="form-control mb-2" id="userId" placeholder="ID" required>
+<input type="text" class="form-control mb-2" id="userName" placeholder="Name" required>
+<input type="email" class="form-control mb-2" id="userEmail" placeholder="Email" required>
+<input type="number" class="form-control mb-2" id="userAge" placeholder="Age" required>
+</form>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+<button class="btn btn-primary" id="saveUserBtn">Save</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+$(document).ready(function () {
+
+const table = $('#myTable').DataTable({
+responsive: true,
+autoWidth: false,
+data: [
+{ id: "1", name: "Pablo", email: "montecarlotechnologies@email.com", age: "29" },
+{ id: "2", name: "Prince Edward Guevara", email: "guevaraprinceedward@email.com", age: "16" },
+{ id: "3", name: "Web Master", email: "webmaster@email.com", age: "21" }
+],
+columns: [
+{ data: 'id' },
+{ data: 'name' },
+{ data: 'email' },
+{ data: 'age' },
+{
+data: null,
+render: function () {
+return `
+<button class="btn btn-sm btn-warning editBtn mb-1">Edit</button>
+<button class="btn btn-sm btn-danger deleteBtn">Delete</button>
+`;
+}
+}
+]
+});
+
+$('#saveUserBtn').click(function () {
+
+const newUser = {
+id: $('#userId').val().trim(),
+name: $('#userName').val().trim(),
+email: $('#userEmail').val().trim(),
+age: $('#userAge').val().trim()
+};
+
+if (!newUser.id || !newUser.name || !newUser.email || !newUser.age) {
+Swal.fire("Oops!", "Please fill all fields.", "error");
+return;
+}
+
+table.row.add(newUser).draw();
+$('#addUserForm')[0].reset();
+bootstrap.Modal.getInstance(document.getElementById('exampleModalCenter')).hide();
+Swal.fire("Success!", "User added successfully!", "success");
+});
+
+$('#myTable tbody').on('click', '.deleteBtn', function () {
+table.row($(this).parents('tr')).remove().draw();
+});
+
+$('#myTable tbody').on('click', '.editBtn', function () {
+const row = table.row($(this).parents('tr'));
+const data = row.data();
+
+$('#userId').val(data.id);
+$('#userName').val(data.name);
+$('#userEmail').val(data.email);
+$('#userAge').val(data.age);
+
+row.remove().draw();
+new bootstrap.Modal(document.getElementById('exampleModalCenter')).show();
+});
+
+});
+</script>
+
+
+
+
+
+
+
+
+
 
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3">
