@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Portfolio</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    text-align: center;
+    overflow-y: auto;
+}
+
+.top-section {
+    padding: 20px 0;
+}
+
+.introduce-button {
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: lightyellow;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeUp 1s ease forwards;
+}
+
+.animation-link {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    color: #9400D3;
+    text-shadow: 0 0 8px rgba(190,0,255,0.7);
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 2s ease forwards;
+    animation-delay: 0.5s;
+    margin-top: 10px;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.center-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.kielpicture {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.picturekiel {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.7s;
+}
+
+.kiel-name {
+    font-size: 18px;
+    font-family: Georgia, serif;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.moreaboutme {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 10px auto 20px auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 1.2s;
+}
+
+.skills {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 1.5s;
+    margin-top: 20px;
+}
+
+.skills ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.skills a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: #9400D3;
+    text-shadow: 0 0 8px rgba(190,0,255,0.7);
+}
+
+.kiel-skills {
+    font-size: 18px;
+    font-family: Georgia, serif;
+    margin-top: 10px;
+}
+
+.skills-achievement {
+    max-width: 500px;
+    margin: 10px auto 0 auto;
+    line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-section">
+    <button class="introduce-button">Welcome To My Portfolio</button><br>
+    <a href="#" class="animation-link">ABOUT ME</a>
+</div>
+
+<div class="center-section">
+    <h4 class="kiel-name">Hello, my name is Ezekiel Andrada Flores</h4>
+
+    <div class="kielpicture">
+        <img src="https://scontent.fmnl33-1.fna.fbcdn.net/v/t39.30808-1/615817608_892084013360261_4209581895590661230_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=100&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeECex0b-J-9vRXYLvpSN-_cCMoWBPnouTsIyhYE-ei5O1L_nQGRrvdmFEGtT2Ge7OYLhK6-VWpi27E-dSow4_Hn&_nc_ohc=b9MIfCNg3QYQ7kNvwGu_xYK&_nc_oc=Adn1nQqIdQ3q22kluN-QgsKNmCK5cfNK6tHOgPLEzdLsfHjH--frxa3C6Y7ycNFy0LQ&_nc_zt=24&_nc_ht=scontent.fmnl33-1.fna&_nc_gid=DWDupxnTvm2cI1NZ07FIyw&oh=00_AfvochgXUiPHiumHrAynElypTpjvZ0rcU9EAi1J20uvuPQ&oe=699E4E7B" alt="Kiel Face" class="picturekiel">
+    </div>
+
+    <p class="moreaboutme">
+        I am 16 years old from San Pablo City, Laguna. I am a Grade 11 student at CMDI. 
+        I want to take an IT course in college. In the future, I want to become a Web Developer 
+        because it offers a high salary in the IT industry.
+    </p>
+
+    <div class="skills">
+        <ul>
+            <li><a href="#">SKILLS</a></li>
+        </ul>
+        <h3 class="kiel-skills">My Skills and Achievements</h3>
+        <p class="skills-achievement">
+            - Naka immortal nang solo<br>
+            - Yearner Final Boss<br>
+            - Dumudurog nang lima<br>
+            - Palo mag Fredrinn at Yss
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
