@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Janela's Coffee Shop</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet">
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+	/* BODY */
+    
+    body {
+    scroll-behavior: smooth;
+    background-color: #f8f5f2;
+    }
+
+    /* NAVBAR */
+    
+    .custom-navbar {
+    background-color: #EDDCC6;
+    }
+
+    .brand-btn {
+    color: #5C3A21;
+    font-size: 1.3rem;
+    font-weight: bold;
+    }
+
+    /* HERO */
+    
+    .hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    }
+
+    /* SECTIONS */
+    
+    section {
+    scroll-margin-top: 90px;
+    padding: 80px 0;
+    }
+
+	/* PROJECT: PRODUCT ( CONTAINER CARDS ) */
+	
+	@media (max-width: 768px) {
+
+
+	#menu {
+    
+  		background-image: url('https://i.pinimg.com/736x/82/b5/c0/82b5c0870c0afe6302fe1da8b1c46774.jpg');
+        
+        }
+
+   	#menu h2 {
+    
+    	color: #fff;
+    	font-weight: bold;
+        
+    }
+
+
+    #menu .card {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    #menu .card-lift-wrapper {
+        transition: transform 0.3s ease; /* Smooth Lift Transition */
+    }
+
+    /* FIRST PROJECT: FLAVOR ( ESPRESSO ) */
+    #menu .card-container-first:hover .card-body,
+    #menu .card-container-first:active .card-body {
+        background-color: #4B2E2B;
+        color: #fff;
+    }
+
+    #menu .card-container-first:hover .card-lift-wrapper,
+    #menu .card-container-first:active .card-lift-wrapper {
+        transform: translateY(-15px);
+    }
+    
+    #menu .card-container-first:hover .card-lift-wrapper h5,
+    #menu .card-container-first:active .card-lift-wrapper h5{
+        animation: fadeIn 1.55s ease;
+    }
+    
+    #menu .card-container-first:hover .card-lift-wrapper p,
+    #menu .card-container-first:active .card-lift-wrapper p{
+        animation: slideInTop 1.25s ease-out forwards;
+    }
+
+
+    /* SECOND PROJECT: FLAVOR ( CARAMEL LATTE ) */
+    #menu .card-container-secondary:hover .card-body,
+    #menu .card-container-secondary:active .card-body {
+        background-color: #D4A373;
+        color: #fff;
+    }
+
+    #menu .card-container-secondary:hover .card-lift-wrapper,
+    #menu .card-container-secondary:active .card-lift-wrapper {
+        transform: translateY(-15px);
+    }
+
+	#menu .card-container-secondary:hover .card-lift-wrapper h5,
+    #menu .card-container-secondary:active .card-lift-wrapper h5{
+        animation: fadeIn 1.55s ease;
+    }
+    
+    #menu .card-container-secondary:hover .card-lift-wrapper p,
+    #menu .card-container-secondary:active .card-lift-wrapper p{
+        animation: slideInTop 1.25s ease-out forwards;
+    }
+
+    /* THIRD PROJECT: FLAVOR ( Mocha Frappe ) */
+    #menu .card-container-third:hover .card-body,
+    #menu .card-container-third:active .card-body {
+        background-color: #6F4E37;
+        color: #fff;
+    }
+
+    #menu .card-container-third:hover .card-lift-wrapper,
+    #menu .card-container-third:active .card-lift-wrapper {
+        transform: translateY(-15px);
+    }
+    
+    #menu .card-container-third:hover .card-lift-wrapper h5,
+    #menu .card-container-third:active .card-lift-wrapper h5{
+        animation: fadeIn 1.55s ease;
+    }
+    
+    #menu .card-container-third:hover .card-lift-wrapper p,
+    #menu .card-container-third:active .card-lift-wrapper p{
+        animation: slideInTop 1.25s ease-out forwards;
+    }
+    
+    /* FOURTH PROJECT: Flavor ( Spanish Latte ) */
+    #menu .card-container-fourth:hover .card-body,
+    #menu .card-container-fourth:active .card-body {
+        background-color: #C8A27A;
+        color: #fff;
+    }
+
+    #menu .card-container-fourth:hover .card-lift-wrapper,
+    #menu .card-container-fourth:active .card-lift-wrapper {
+        transform: translateY(-15px);
+    }
+    
+    #menu .card-container-fourth:hover .card-lift-wrapper h5,
+    #menu .card-container-fourth:active .card-lift-wrapper h5{
+        animation: fadeIn 1.55s ease;
+    }
+    
+    #menu .card-container-fourth:hover .card-lift-wrapper p,
+    #menu .card-container-fourth:active .card-lift-wrapper p{
+        animation: slideInTop 1.25s ease-out forwards;
+    }
+
+
+    /* CARD-BODY STYLING  */
+    #menu .card-body {
+    	background-color: #E0D9D9;
+        text-align: center;
+        padding: 35px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    /* BUTTONS */
+    #menu .btn {
+        background-color: burlywood;
+        color: #fff;
+        display: inline-block;
+        margin: 15px auto 0 auto;
+        padding: 5px 35px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #menu .btn:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+    /* USING ANIMATIONS IN CARDS */
+    #menu .card-container-first { animation: slideInLeft 1.3s ease-out forwards;
+animation-delay: 0.3s;
+opacity: 0; }
+    #menu .card-container-secondary { animation: slideInRight 1.3s ease-out forwards;
+animation-delay: 0.3s;
+opacity: 0; }
+    #menu .card-container-third { animation: slideInLeft 1.3s ease-out forwards;
+animation-delay: 0.3s;
+opacity: 0; }
+	#menu .card-container-fourth { animation: slideInRight 1.3s ease-out forwards;
+animation-delay: 0.3s;
+opacity: 0; }
+
+}
+	
+    @keyframes slideInDown {
+    
+    	0% {
+    
+    		transform: translateY(-15px);
+    		opacity: 0;
+    
+    	}
+    
+    	100% {
+    
+    		transform: translateY(0);
+            opacity: 1;
+    
+    	}
+    
+    }
+	
+	/* PROJECT: ABOUT-US ( CONTAINER ) */
+
+	@media (max-width: 768px) {
+
+        #about .container { 
+        
+        animation: slideInTop 1.3s ease-out forwards;
+        transition: 0.8s;
+        opacity: 0; 
+        
+        }
+
+    	#about {
+        
+        	background-color: #F3E5D8;
+
+		}
+
+
+
+	}
+
+    /* MENU CARDS */
+    
+    .card-body {
+    background-color: #f1e3d3;
+    border-radius: 10px;
+    }
+
+    .btn-coffee {
+    background-color: #5C3A21;
+    color: #fff;
+    }
+
+    .btn-coffee:hover {
+    background-color: #3b2414;
+    color: #fff;
+    }
+
+    /* TABLE SECTION */
+    .data-table-body {
+    background-color: #e9dfd3;
+    }
+
+    /* FOOTER */
+    
+    footer {
+    background-color: #3b2414;
+    color: white;
+    }
+
+
+    .nav-hover {
+    
+    transition: 0.7s ease;
+    
+    }
+    
+    /* ADD-ONS */
+    
+    .nav-hover:hover .nav-link {
+    
+    	color: #fff !important;
+    
+	}
+    
+    
+    
+    .nav-hover:hover {
+    
+    color: #fff;
+    background-color: #A18D6D;
+    transition: 0.7s ease;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+    display: flex;
+    animation: slideInLeft 1.2s ease-out forwards;
+    
+    }
+    
+    @keyframes slideInLeft {
+    
+    	0% {
+        
+        transform: translateX(-50px);
+        opacity: 0;
+        
+        }
+    
+    	100% {
+        
+        transform: translateX(0);
+        opacity: 1;
+        
+        }
+    
+    
+    }
+    
+    @keyframes slideInRight {
+    
+    	0% {
+        
+        transform: translateX(50px);
+        opacity: 0;
+        
+        }
+        
+        100% {
+        
+        transform: translateX(0);
+        opacity: 1;
+        
+        }
+        
+    }
+    
+    .work-btn {
+    
+    border: none;
+    transition: 0.7s ease;
+    
+    }
+    
+    .work-btn:hover {
+    
+    border: none;
+    transition: 0.7s ease;
+    background-color: #0B2D72;
+    color: #fff;
+    
+    }
+    
+    .brand-btn {
+    
+    color: #562F00;
+    font-size: 1.35em
+    
+    }
+    
+    .main-head {
+    
+    animation: fadeIn 1.7s ease;
+    
+    }
+    
+    @keyframes fadeIn {
+    
+        from {
+
+        opacity: 0;
+
+        }
+
+        to {
+
+        opacity: 1;
+
+        }
+    
+    }
+    
+    .secondary-head {
+    
+    	animation: slideInTop 1.65s ease-out forwards;
+        
+        }
+        
+    @keyframes slideInTop {
+    
+    	0% {
+        
+        transform: translateY(50px);
+        opacity: 0;
+        
+        }
+    
+    	100% {
+        
+        transform: translateX(0);
+        opacity: 1;
+        
+        }
+
+    }
+
+
+        @media (min-width: 992px) {
+
+            .navbar-nav .nav-item:not(:first-child) {
+                margin-left: 75px;
+            }
+
+            }
+
+            /* ONLY WORK IN MOBILE RESPONSIVE */
+
+            @media (max-width: 991px) {
+            
+                .responsive-anim {
+                animation: slideInLeft 0.8s ease-out both;
+                user-select: none;
+            }
+
+            }
+
+            /* ONLY WORK IN DESKTOP*/
+            @media (min-width: 992px) {
+                
+                .responsive-anim {
+                animation: fadeIn 1.2s ease-in both;
+                user-select: none;
+            }
+
+            }
+
+            @media (min-width: 992px) {
+                
+                .responsive-hover {
+                animation: fadeIn 1.2s ease-in both;
+                user-select: none;
+                padding: 0px 15px;
+                
+            }
+
+            }
+            
+ /* ABOUT CONTAINER */
+
+	#about .aos-delay {
+    
+    	transition-delay: 0.35s;
+        
+   }
+
+
+	#about .aos-delay-1 {
+    
+    	transition-delay: 0.5s;
+
+	}
+
+
+</style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
+  <div class="container">
+    <a class="navbar-brand brand-btn" href="#"> <strong>☕ The Janela's Coffee Shop </strong> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto responsive-anim">
+        <li class="nav-item nav-hover responsive-hover"><a class="nav-link" href="#home">Home Page</a></li>
+        <li class="nav-item nav-hover responsive-hover"><a class="nav-link" href="#about">About Us</a></li>
+        <li class="nav-item nav-hover responsive-hover"><a class="nav-link" href="#menu">Our Products</a></li>
+        <li class="nav-item nav-hover responsive-hover"><a class="nav-link" href="#contact">Contact Us</a></li>
+        <li class="nav-item nav-hover responsive-hover"><a class="nav-link" href="#table">Table</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero d-flex align-items-center">
+<div class="container text-center">
+<h1 class="display-4 fw-bold">Freshly Brewed Happiness ☕</h1>
+<p class="lead">Premium coffee crafted with passion.</p>
+<a href="#menu" class="btn btn-light btn-lg mt-3">View Our Menu</a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container text-center">
+<h2  data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="300" class="aos-delay"> About Our Coffee</h2>
+<p  data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="500" class="aos-delay-1 mt-3">
+At The Jose's Coffee Shop, we serve high-quality beans sourced from the best farms around the world.
+Experience comfort, aroma, and warmth in every cup.
+</p>
+</div>
+</section>
+
+<!-- MENU (FORMER PROJECTS SECTION) -->
+<section id="menu">
+<div class="container">
+<h2 class="text-center mb-4">Our Best Sellers</h2>
+<div class="row g-4">
+
+<div class="col-md-3">
+<div class="card h-100 text-center card-container-first">
+<div class="card-lift-wrapper">
+<div class="card-body">
+<h5>Espresso</h5>
+<p>Strong and bold classic coffee shot.</p>
+<button id="projectBtn1" type="button" class="btn btn-coffee">Order Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card h-100 text-center card-container-secondary">
+<div class="card-lift-wrapper">
+<div class="card-body">
+<h5>Caramel Latte</h5>
+<p>Smooth espresso with caramel sweetness.</p>
+<button id="projectBtn2" type="button" class="btn btn-coffee">Order Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card h-100 text-center card-container-third">
+<div class="card-lift-wrapper">
+<div class="card-body">
+<h5>Mocha Frappe</h5>
+<p>Chilled chocolate coffee delight.</p>
+<button id="projectBtn3" type="button" class="btn btn-coffee">Order Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card h-100 text-center card-container-fourth">
+<div class="card-lift-wrapper">
+<div class="card-body">
+<h5>Spanish Latte</h5>
+<p>Rich espresso with creamy milk and a touch of sweetness.</p>
+<button id="projectBtn4" type="button" class="btn btn-coffee">Order Now</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- JAVA SCRIPT FOR SWAL.FIRE -->
+<script>
+
+/* PRIMARY BUTTON USED FOR SWAL.FIRE */
+
+document.getElementById("projectBtn1").addEventListener("click", function() {
+
+    Swal.fire({
+        title: 'Espresso Coffee',
+        text: "Do you want to purchase this coffee?",
+        imageUrl: 'https://img.freepik.com/premium-vector/coffee-cup-vector-logo-design-template-coffee-shop-labels_658271-10657.jpg?semt=ais_hybrid&w=740&q=80',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Custom logo',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, buy it!'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                title: 'Opened!',
+                text: 'Your project has been opened.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "";
+            });
+
+        }
+
+    });
+
+});
+
+/* SECONDARY BUTTON USED FOR SWAL.FIRE */
+
+document.getElementById("projectBtn2").addEventListener("click", function() {
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to purchase this coffee?",
+        imageUrl: 'https://www.shutterstock.com/image-vector/watercolor-illustration-latte-macchiato-caramel-600nw-2530159227.jpg',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Custom logo',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, buy it!'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                title: 'Opened!',
+                text: 'Your project has been opened.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "";
+            });
+
+        }
+
+    });
+
+});
+
+/* THIRD BUTTON USED FOR SWAL.FIRE */
+
+document.getElementById("projectBtn3").addEventListener("click", function() {
+
+    Swal.fire({
+        title: 'Are you sure?',
+        html: `
+            Do you want to purchase this coffee?<br>
+            <b>Price: ₱90</b>
+        `,
+        imageUrl: 'https://thumbs.dreamstime.com/b/frappe-coffee-frappucino-disposable-plastic-cup-frappe-coffee-frappucino-disposable-plastic-cup-straw-whipped-cream-153003960.jpg',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Coffee logo',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, buy it!'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                title: 'Success!',
+                text: 'You have successfully purchased the coffee.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "";
+            });
+
+        }
+
+    });
+
+});
+
+/* FOURTH BUTTON USED FOR SWAL.FIRE */
+
+document.getElementById("projectBtn4").addEventListener("click", function() {
+
+    Swal.fire({
+        title: 'Are you sure?',
+        html: `
+            Do you want to purchase this coffee?<br>
+            <b>Price: ₱100</b>
+        `,
+        imageUrl: 'https://img.freepik.com/premium-vector/latte-art-icon-logo-vector-isolated-white-background_850482-23.jpg?w=360',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Coffee logo',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, buy it!'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                title: 'Success!',
+                text: 'You have successfully purchased the coffee.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "";
+            });
+
+        }
+
+    });
+
+});
+</script>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container text-center">
+<h2>Contact Us</h2>
+<div class="row justify-content-center mt-4">
+<div class="col-md-6">
+<form>
+<input type="text" class="form-control mb-3" placeholder="Your Name">
+<input type="email" class="form-control mb-3" placeholder="Your Email">
+<textarea class="form-control mb-3" rows="4" placeholder="Your Message"></textarea>
+<button class="btn btn-coffee w-100">Send Message</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ORDERS TABLE -->
+<section id="table" class="data-table-body">
+  <div class="container">
+    <h2 class="text-center mb-4">Customer Orders</h2>
+
+    <div class="text-center mb-3">
+      <button class="btn btn-coffee" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        Add Order
+      </button>
+    </div>
+
+    <div class="table-responsive">
+      <table id="myTable" class="table table-striped nowrap" style="width:100%">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Drink</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- TOTAL OUTSIDE TABLE -->
+    <div class="mt-3 text-end">
+      <h4 id="grandTotal">Total: ₱0.00</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Order</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addUserForm">
+          <input type="text" class="form-control mb-2" id="userId" placeholder="Order ID">
+          <input type="text" class="form-control mb-2" id="userName" placeholder="Customer Name">
+
+          <select class="form-control mb-2" id="userDrink">
+            <option value="">Select Coffee</option>
+            <option value="Americano">Americano</option>
+            <option value="Latte">Latte</option>
+            <option value="Cappuccino">Cappuccino</option>
+            <option value="Mocha">Mocha</option>
+          </select>
+
+          <select class="form-control mb-2" id="userSize">
+            <option value="">Select Size</option>
+            <option value="Small">Small (12oz)</option>
+            <option value="Medium">Medium (16oz)</option>
+            <option value="Large">Large (22oz)</option>
+          </select>
+
+          <input type="number" class="form-control mb-2" id="userQty" placeholder="Quantity" min="1" value="1">
+
+          <button style="background-color: #A2CB8B; border: none;"
+            type="submit" class="btn btn-coffee btn-primary w-100">Add to cart 🛒</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS Libraries -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+$(document).ready(function () {
+
+  const priceList = {
+    Americano: { Small: 100, Medium: 120, Large: 140 },
+    Latte: { Small: 120, Medium: 140, Large: 160 },
+    Cappuccino: { Small: 130, Medium: 150, Large: 170 },
+    Mocha: { Small: 140, Medium: 160, Large: 180 }
+  };
+
+  const table = $('#myTable').DataTable({
+    responsive: true,
+    data: [],
+    columns: [
+      { data: 'id' },
+      { data: 'name' },
+      { data: 'drink' },
+      { data: 'size' },
+      { data: 'qty' },
+      { 
+        data: 'price',
+        render: function (data) {
+          return `₱${Number(data).toFixed(2)}`;
+        }
+      },
+      {
+        data: null,
+        render: function () {
+          return `
+            <button class="btn btn-sm btn-warning editBtn">Edit</button>
+            <button class="btn btn-sm btn-danger deleteBtn">Delete</button>
+          `;
+        }
+      }
+    ]
+  });
+
+  function updateTotal() {
+    let data = table.rows().data().toArray();
+    let total = data.reduce((sum, order) => sum + (parseFloat(order.price) || 0), 0);
+    $('#grandTotal').text(`Total: ₱${total.toFixed(2)}`);
+  }
+
+  $('#addUserForm').submit(function (e) {
+    e.preventDefault();
+
+    const id = $('#userId').val().trim();
+    const name = $('#userName').val().trim();
+    const drink = $('#userDrink').val();
+    const size = $('#userSize').val();
+    const qty = parseInt($('#userQty').val(), 10);
+
+    const orderIDRule = /^[0-9]+$/;
+    const nameRule = /^[a-zA-Z\s]+$/;
+
+    if (!id || !name || !drink || !size || !qty) {
+      Swal.fire({ icon: 'warning', title: 'Oops!', text: 'Please fill up all fields!', confirmButtonColor: '#5C3A21' });
+      return;
+    }
+    if (!orderIDRule.test(id)) {
+      Swal.fire({ icon: 'error', title: 'Oops!', text: 'Order ID must be numeric!', confirmButtonColor: '#5C3A21' });
+      return;
+    }
+    if (!nameRule.test(name)) {
+      Swal.fire({ icon: 'error', title: 'Oops!', text: 'Customer Name must contain letters only!', confirmButtonColor: '#5C3A21' });
+      return;
+    }
+
+    const unitPrice = priceList[drink][size];
+    const subtotal = unitPrice * qty;
+
+    table.row.add({ id, name, drink, size, qty, price: subtotal }).draw();
+
+    this.reset();
+    bootstrap.Modal.getInstance(document.getElementById('exampleModalCenter')).hide();
+
+    Swal.fire({ icon: 'success', title: 'Success!', text: 'Order Added!', confirmButtonColor: '#5C3A21' });
+
+    updateTotal();
+  });
+
+  $('#myTable tbody').on('click', '.deleteBtn', function () {
+    table.row($(this).parents('tr')).remove().draw();
+    updateTotal();
+  });
+
+  $('#myTable tbody').on('click', '.editBtn', function () {
+    const row = table.row($(this).parents('tr'));
+    const data = row.data();
+    $('#userId').val(data.id);
+    $('#userName').val(data.name);
+    $('#userDrink').val(data.drink);
+    $('#userSize').val(data.size);
+    $('#userQty').val(data.qty);
+    row.remove().draw();
+    new bootstrap.Modal(document.getElementById('exampleModalCenter')).show();
+    updateTotal();
+  });
+
+});
+</script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init();
+</script>
+
+
+
+<!-- THE JANELA'S COFFEE SHOP ( WEBSITE ) -->
+<!-- LATEST UPDATE : MAR 01 2026 > 10:40AM -->
+<!-- NEW CHANGES THAN BEFORE! -->
+
+
+</body>
+</html>
