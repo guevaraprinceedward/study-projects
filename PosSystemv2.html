@@ -14,32 +14,150 @@
 <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet" />
 
 <style>
-body { background: #f4f6f9; font-size: 14px; }
-.sidebar { height:100vh; background:#1f2d3d; color:white; position:fixed; width:220px; padding-top:20px; }
-.sidebar h4 { text-align:center; margin-bottom:30px; }
-.sidebar a { display:block; color:#c2c7d0; padding:10px 20px; text-decoration:none; }
-.sidebar a:hover { background:#3c8dbc; color:white; }
-.main { margin-left:220px; padding:20px; }
+
+    body {
+
+        background: #f4f6f9;
+        font-size: 14px;
+
+    }
+
+  .sidebar {
+
+      height:100vh;
+      background:#1f2d3d;
+      color:white;
+      position:fixed;
+      width:220px;
+      padding-top:20px;
+
+  }
+  
+  .sidebar h4 {
+
+	 text-align:center;
+     margin-bottom:30px;
+    
+  }
+  
+  .sidebar a {
+
+      display:block;
+      color:#c2c7d0;
+      padding:10px 20px;
+      text-decoration:none;
+
+  }
+  
+  .sidebar a:hover {
+
+        background:#3c8dbc;
+        color:white;
+
+  }
+  
+  .main {
+
+      margin-left:220px;
+      padding:20px;
+
+  }
 
 /* PRODUCT CARD */
-.product-card { border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; background:white; transition:0.2s; }
-.product-card:hover { box-shadow:0 4px 12px rgba(0,0,0,0.1); transform:scale(1.02); }
-.product-img { height:80px; background:#eee; margin-bottom:10px; border-radius:6px; }
+  .product-card {
+
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:10px;
+      text-align:center;
+      background:white;
+      transition:0.2s;
+
+  }
+  
+  .product-card:hover {
+
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transform:scale(1.02);
+
+  }
+
+.product-img { 
+    background:#eee; 
+    margin-bottom:10px; 
+    border-radius:6px; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    padding:5px; 
+    height:120px;       /* fixed height */
+    overflow: hidden;   /* prevents any overflow */
+}
+
+  .product-img img {
+      max-width: 100%;      /* ensures width never exceeds container */
+      max-height: 100%;     /* ensures height never exceeds container */
+      object-fit: contain;  /* scales image to fit inside box without cropping */
+      display: block;       /* remove any inline spacing issues */
+      border-radius: 6px;
+  }
+
 .add-btn { background:#17a2b8; color:white; border:none; padding:5px 10px; border-radius:4px; font-size:12px; cursor:pointer; }
 
 /* CART PANEL */
-.cart-panel { background:white; border-radius:10px; padding:15px; }
-.cart-item { border-bottom:1px solid #eee; padding:6px 0; display:flex; justify-content:space-between; align-items:center; }
-.qty-btn { border:none; background:#3c8dbc; color:white; width:25px; height:25px; border-radius:4px; margin:0 2px; cursor:pointer; }
-.checkout-btn { background:#28a745; color:white; border:none; }
-.clear-btn { background:#dc3545; color:white; border:none; }
+  .cart-panel {
+
+      background:white;
+      border-radius:10px;
+      padding:15px;
+
+  }
+  
+  .cart-item {
+
+       border-bottom:1px solid #eee;
+       padding:6px 0; display:flex;
+       justify-content:space-between;
+       align-items:center;
+
+  }
+  
+    .qty-btn {
+
+        border:none;
+        background:#3c8dbc;
+        color:white;
+        width:25px;
+        height:25px;
+        border-radius:4px;
+        margin:0 2px;
+        cursor:pointer;
+
+    }
+    
+  .checkout-btn {
+
+      background:#28a745;
+      color:white;
+      border:none;
+
+  }
+  
+    .clear-btn {
+
+        background:#dc3545;
+        color:white;
+        border:none;
+
+    }
+    
 </style>
 </head>
 <body>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-<h4>MyPOS</h4>
+<h4>My Own POS System</h4>
 <a href="#posSection">POS System</a>
 <a href="#completedOrdersSection">Completed Orders</a>
 </div>
@@ -49,7 +167,7 @@ body { background: #f4f6f9; font-size: 14px; }
 <!-- ================== POS SYSTEM ================== -->
 <section id="posSection">
   <div class="topbar mb-3">
-    <h5>Point of Sale</h5>
+    <h5>Point of Sales ( COFFEE PRODUCTS )</h5>
     <span>Admin</span>
   </div>
 
@@ -128,11 +246,11 @@ body { background: #f4f6f9; font-size: 14px; }
 
 <script>
 const products = [
-  {name:"Espresso", category:"coffee", price:90, stock:50, sku:"ESP-001", imgUrl: "https://img.freepik.com/premium-vector/coffee-cup-vector-logo-design-template-coffee-shop-labels_658271-10657.jpg?semt=ais_hybrid&w=740&q=80"},
-  {name:"Caramel Latte", category:"coffee", price:120, stock:35, sku:"LAT-002"},
-  {name:"Mocha Frappe", category:"coffee", price:110, stock:42, sku:"MOCH-003"},
-  {name:"Classic Milk Tea", category:"milktea", price:80, stock:60, sku:"MILK-001"},
-  {name:"Taro Milk Tea", category:"milktea", price:90, stock:40, sku:"MILK-002"},
+  {name:"Espresso", category:"coffee", price:105, stock:50, sku:"ESP-001", imgUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s"},
+  {name:"Caramel Latte", category:"coffee", price:125, stock:35, sku:"LAT-002", imgUrl:"https://www.shutterstock.com/image-photo/clear-glass-cup-without-handle-600nw-2636039231.jpg"},
+  {name:"Mocha Frappe", category:"coffee", price:110, stock:45, sku:"MOCH-003", imgUrl:"https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg"},
+  {name:"Spanish Latte", category:"coffee", price:100, stock:70, sku:"SPA-004", imgUrl:"https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass-revealing-distinct-bands-of-coffee-and-milk-the-drink-is-set-on-a-dark-stone-surface-enhancing-its-rich-colors-photo.jpeg"},
+  {name:"Americano", category:"coffee", price:80, stock:75, sku:"COF-001", imgUrl:"https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg"},
 ];
 
 let cart = [];
@@ -156,7 +274,9 @@ function renderProducts() {
     $("#productList").append(`
       <div class="col-md-4">
         <div class="product-card">
-          <div class="product-img"></div>
+          <div class="product-img">
+            <img src="${p.imgUrl}" alt="${p.name}">
+          </div>
           <h6>${p.name}</h6>
           <small>SKU: ${p.sku}</small><br>
           <small>Stock: ${p.stock}</small>
@@ -209,7 +329,7 @@ $("#checkoutBtn").click(()=>{
   let customer = $("#customerName").val() || "Guest";
   let items = cart.map(i=>`${i.name} x${i.qty}`).join(", ");
   let subtotal = parseFloat($("#subtotal").text());
-  let tax = subtotal * 0.40; // 40% tax
+  let tax = subtotal * 0.40; 
   let service = parseFloat($("#serviceCharge").val())||0;
   let grand = subtotal + tax + service;
   let payment = $("#paymentMethod").val();
@@ -249,6 +369,13 @@ $("#serviceCharge").on("input",updateCart);
 $("#searchProduct").on("input",renderProducts);
 $("#categoryFilter").on("change",renderProducts);
 </script>
+
+
+
+
+<!-- COFFEE SHOP ( POS PROJECT ) -->
+<!-- NEW CHANGES THAN BEFORE! -->
+<!-- LASTEST UPDATE: MAR 03 2026 > 1:39AM -->
 
 </body>
 </html>
