@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
 <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <style>
 
   body {
@@ -102,16 +102,145 @@
 
   }
 
-.add-btn{
+  .add-btn {
 
-background:#17a2b8;
-color:white;
-border:none;padding:5px 10px;border-radius:4px;font-size:12px;cursor:pointer;}
-.cart-panel{background:white;border-radius:10px;padding:15px;}
-.cart-item{border-bottom:1px solid #eee;padding:6px 0;display:flex;justify-content:space-between;align-items:center;}
-.qty-btn{border:none;background:#3c8dbc;color:white;width:25px;height:25px;border-radius:4px;margin:0 2px;cursor:pointer;}
-.checkout-btn{background:#28a745;color:white;border:none;}
-.clear-btn{background:#dc3545;color:white;border:none;}
+      background: linear-gradient(45deg, #4B2E2B, #A9746E);
+      color:white;
+      border:none;
+      padding:5px 10px;
+      border-radius:4px;
+      font-size:12px;
+      cursor:pointer;
+      transition: 0.8s ease;
+
+  }
+  
+  .add-btn:hover {
+  
+  	transform: translateY(-10px);
+    transtion: 0.8s ease;
+  
+  }
+  
+  .cart-panel {
+  
+  	background:white;
+    border-radius:10px;
+    padding:15px;
+    
+  }
+  
+  .cart-item {
+
+	border-bottom:1px solid #eee;
+    padding:6px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
+  }
+  
+  .qty-btn {
+
+	border:none;
+    background: linear-gradient(45deg, #4B2E2B, #A9746E);
+    color:white;
+    width:25px
+    ;height:25px;
+    border-radius:4px;
+    margin:0 2px;
+    cursor:pointer;
+    
+  }
+  
+  .checkout-btn {
+  
+  	background: linear-gradient(135deg, #16a05f 0%, #36b39c 100%);
+    color:white;
+    border:none;
+    transition: 0.8s ease;
+    background-size: 200% 200%;
+    
+  }
+  
+  .checkout-btn:hover {
+
+      background-position: right center;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    
+  }
+  
+  .clear-btn {
+  
+    background: linear-gradient(135deg, #e6534b 0%, #d6453d 100%);
+    color:white;
+    border:none;
+    transition: 0.8s ease;
+    background-size: 200% 200%;
+  
+  }
+  
+  .clear-btn:hover {
+  
+      background-position: right center;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    
+  }
+  
+  .checkout-btn, .clear-btn {
+  
+    min-width: 150px;
+    text-align: center;
+    
+  }
+  
+  .fee-container {
+
+    background:#f1f1f1;
+    padding:10px;
+    border-radius:8px;
+    margin-top:15px;
+    transition: 0.8s ease;
+    animation: fadeIn 1.3s ease-out forwards;
+
+  }
+  
+  @keyframes fadeIn {
+  
+  		from {
+        
+        	opacity: 0;
+            
+        }
+        
+        to {
+        
+        	opacity: 1;
+            
+        }
+        
+        
+  }
+
+  .fee-row {
+  
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 5px;
+    margin-bottom:4px;
+    
+  }
+
+  .grand-total {
+
+    font-weight:bold;
+    font-size:16px;
+
+  }
+
 </style>
 </head>
 <body>
@@ -150,12 +279,40 @@ border:none;padding:5px 10px;border-radius:4px;font-size:12px;cursor:pointer;}
 <option value="gcash">GCash</option>
 <option value="card">Card</option>
 </select>
-<p>Subtotal: ₱<span id="subtotal">0.00</span></p>
-<p>Tax (40%): ₱<span id="tax">0.00</span></p>
-<p>Service: ₱<span id="serviceTotal">0.00</span></p>
-<h5>Grand Total: ₱<span id="grandTotal">0.00</span></h5>
-<button class="btn checkout-btn w-100 mt-3" id="checkoutBtn">Checkout</button>
-<button class="btn clear-btn w-100 mt-2" id="clearBtn">Clear</button>
+<div class="fee-container">
+
+<div class="fee-row">
+<span>Subtotal:</span>
+<span>₱<span id="subtotal">0.00</span></span>
+</div>
+
+<div class="fee-row">
+<span>Tax:</span>
+<span>₱<span id="tax">0.00</span></span>
+</div>
+
+<div class="fee-row">
+<span>Service:</span>
+<span>₱<span id="serviceTotal">0.00</span></span>
+</div>
+
+<hr>
+
+<div class="fee-row grand-total">
+<span>Grand Total:</span>
+<span>₱<span id="grandTotal">0.00</span></span>
+</div>
+
+</div>
+
+  <button class="btn checkout-btn w-100 mt-3" id="checkoutBtn">
+    <i class="bi bi-check2-circle me-2"></i> Checkout
+  </button>
+
+  <button class="btn clear-btn w-100 mt-2" id="clearBtn">
+    <i class="bi bi-trash3-fill me-2"></i> Clear
+  </button>
+
 </div>
 </div>
 </div>
@@ -164,12 +321,18 @@ border:none;padding:5px 10px;border-radius:4px;font-size:12px;cursor:pointer;}
 <hr>
 
 <section id="completedOrdersSection" class="mt-5">
+
 <h4>Completed Orders</h4>
+
 <div class="table-responsive">
+
 <table id="completedOrdersTable" class="table table-bordered nowrap" style="width:100%">
+
 <thead>
 <tr>
+
 <th>#</th>
+
 <th>Customer</th>
 <th>Items</th>
 <th>Subtotal</th>
@@ -178,11 +341,14 @@ border:none;padding:5px 10px;border-radius:4px;font-size:12px;cursor:pointer;}
 <th>Grand Total</th>
 <th>Payment</th>
 <th>Date</th>
+
 </tr>
 </thead>
 <tbody></tbody>
 </table>
+
 </div>
+
 </section>
 
 </div>
@@ -201,105 +367,130 @@ const products = [
 {name:"Americano", price:80, stock:75, imgUrl:"https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg"},
 ];
 
-let cart=[];
-let completedOrdersTable;
+    let cart=[];
+    let completedOrdersTable;
 
-$(document).ready(function(){
-completedOrdersTable = $('#completedOrdersTable').DataTable({responsive:true});
-renderProducts();
-});
+    $(document).ready(function(){
+    completedOrdersTable = $('#completedOrdersTable').DataTable({responsive:true});
+    renderProducts();
+    });
 
 function renderProducts(){
-let searchTerm=$("#searchProduct").val().toLowerCase();
-$("#productList").empty();
 
-products.forEach(p=>{
-if(!p.name.toLowerCase().includes(searchTerm)) return;
+	let searchTerm=$("#searchProduct").val().toLowerCase();
 
-$("#productList").append(`
-<div class="col-md-4">
-<div class="product-card">
+	$("#productList").empty();
 
-<div class="product-img">
-<img src="${p.imgUrl}" alt="${p.name}">
-</div>
+    products.forEach(p=>{
 
-<h6>${p.name}</h6>
+    if(!p.name.toLowerCase().includes(searchTerm)) return;
 
-<small style="color:${p.stock===0?'red':'black'}">
-Stock: ${p.stock===0?'Out of stock':p.stock}
-</small>
+	$("#productList").append(`
 
-<p class="mt-2">₱${p.price}</p>
+    <div class="col-md-4">
+    <div class="product-card">
 
-<button class="add-btn"
-${p.stock===0?'disabled style="background:gray;cursor:not-allowed;"':''}
-onclick="addToCart('${p.name}',${p.price})">
-+ Add
-</button>
+    <div class="product-img">
+    <img src="${p.imgUrl}" alt="${p.name}">
+    </div>
 
-</div>
-</div>
-`);
-});
+    <h6>${p.name}</h6>
+
+    <small style="color:${p.stock===0?'red':'black'}">
+    Stock: ${p.stock===0?'Out of stock':p.stock}
+    </small>
+
+    <p class="mt-2">₱${p.price}</p>
+
+    <button class="add-btn"
+    ${p.stock===0?'disabled style="background:gray;cursor:not-allowed;"':''}
+    onclick="addToCart('${p.name}',${p.price})">
+    + Add
+    </button>
+
+    </div>
+    </div>
+    
+  `);
+  
+  });
+  
 }
 
 function addToCart(name,price){
-let product=products.find(p=>p.name===name);
-if(product.stock<=0){Swal.fire("Out of stock!","","error");return;}
 
-let exist=cart.find(i=>i.name===name);
-if(exist){
-if(exist.qty<product.stock){exist.qty++;}
-else{Swal.fire("Not enough stock!","","warning");return;}
-}else{cart.push({name,price,qty:1});}
-updateCart();
+	let product=products.find(p=>p.name===name);
+
+	if(product.stock<=0){Swal.fire("Out of stock!","","error");return;}
+
+	let exist=cart.find(i=>i.name===name);
+
+	if(exist){
+
+		if(exist.qty<product.stock){exist.qty++;}
+        
+		else{Swal.fire("Not enough stock!","","warning");return;}
+        
+		}else{cart.push({name,price,qty:1});}
+        
+		updateCart();
 }
 
-function updateCart(){
-let subtotal=0,html="";
-cart.forEach((item,i)=>{
-subtotal+=item.price*item.qty;
-html+=`<div class="cart-item">
-<div>${item.name} x ${item.qty}</div>
-<div>
-<button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
-<button class="qty-btn" onclick="changeQty(${i},1)">+</button>
-</div>
-</div>`;
-});
-$("#cartItems").html(html);
+function updateCart() {
+    let subtotal = 0, html = "";
+    cart.forEach((item,i)=>{
+        subtotal += item.price * item.qty;
+        html += `<div class="cart-item">
+                    <div>${item.name} x ${item.qty}</div>
+                    <div>
+                        <button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
+                        <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+                    </div>
+                 </div>`;
+    });
+    $("#cartItems").html(html);
 
-let tax=subtotal*0.40;
-let service=parseFloat($("#serviceCharge").val())||0;
-let grand=subtotal+tax+service;
+    let service = parseFloat($("#serviceCharge").val())||0;
 
-$("#subtotal").text(subtotal.toFixed(2));
-$("#tax").text(tax.toFixed(2));
-$("#serviceTotal").text(service.toFixed(2));
-$("#grandTotal").text(grand.toFixed(2));
-}
+    // --- PAYMENT METHOD PERCENTAGE ---
+    let method = $("#paymentMethod").val();
+    let paymentPercent = method === "cash" ? 0.10 : method === "gcash" ? 0.20 : 0.35;
 
-window.changeQty=function(i,amt){
-cart[i].qty+=amt;
-if(cart[i].qty<=0)cart.splice(i,1);
-updateCart();
-};
+    // compute dynamic "tax"/partial payment
+    let dynamicTax = subtotal * paymentPercent;
 
-$("#clearBtn").click(()=>{cart=[];updateCart();});
+    // --- GRAND TOTAL ---
+    let grandTotal = subtotal + service + dynamicTax; // kasama ang dynamic tax
 
-$("#checkoutBtn").click(()=>{
+    // DISPLAY
+    $("#subtotal").text(subtotal.toFixed(2));
+    $("#tax").text(dynamicTax.toFixed(2));  // ipapakita bilang tax/partial
+    $("#serviceTotal").text(service.toFixed(2));
+    $("#grandTotal").text(grandTotal.toFixed(2));
+  }
+
+  window.changeQty=function(i,amt){
+  cart[i].qty+=amt;
+
+  if(cart[i].qty<=0)cart.splice(i,1);
+  updateCart();
+  
+  };
+
+  $("#clearBtn").click(()=>{cart=[];updateCart();});
+
+  $("#checkoutBtn").click(()=>{
 
 if(cart.length===0){Swal.fire("Cart is empty!","","warning");return;}
 
-let customer=$("#customerName").val()||"Guest";
-let items=cart.map(i=>`${i.name} x${i.qty}`).join(", ");
-let subtotal=parseFloat($("#subtotal").text());
-let tax=subtotal*0.40;
-let service=parseFloat($("#serviceCharge").val())||0;
-let grand=subtotal+tax+service;
-let payment=$("#paymentMethod").val();
-let date=new Date().toLocaleString();
+    let customer=$("#customerName").val()||"Guest";
+    let items=cart.map(i=>`${i.name} x${i.qty}`).join(", ");
+    let subtotal=parseFloat($("#subtotal").text());
+    let tax=subtotal*0.40;
+    let service=parseFloat($("#serviceCharge").val())||0;
+    let grand=subtotal+tax+service;
+    let payment=$("#paymentMethod").val();
+    let date=new Date().toLocaleString();
 
 /* STOCK DEDUCTION */
 cart.forEach(cartItem=>{
@@ -309,31 +500,39 @@ if(product){product.stock-=cartItem.qty;}
 
 /* ADD TO TABLE */
 completedOrdersTable.row.add([
-completedOrdersTable.rows().count()+1,
-customer,
-items,
-subtotal.toFixed(2),
-tax.toFixed(2),
-service.toFixed(2),
-grand.toFixed(2),
-payment.toUpperCase(),
-date
-]).draw();
+  completedOrdersTable.rows().count()+1,
+    customer,
+    items,
+    subtotal.toFixed(2),
+    tax.toFixed(2),
+    service.toFixed(2),
+    grand.toFixed(2),
+    payment.toUpperCase(),
+    date
+  ]).draw();
 
-Swal.fire("Payment Successful!","","success");
+	Swal.fire("Payment Successful!","","success");
 
-cart=[];
-updateCart();
-renderProducts();
-$("#customerName").val("");
-$("#serviceCharge").val("0");
-$("#paymentMethod").val("cash");
+    cart=[];
+    updateCart();
+    renderProducts();
+    $("#customerName").val("");
+    $("#serviceCharge").val("0");
+    $("#paymentMethod").val("cash");
 
-});
+  });
 
-$("#serviceCharge").on("input",updateCart);
-$("#searchProduct").on("input",renderProducts);
+    $("#serviceCharge").on("input", updateCart);
+    $("#searchProduct").on("input", renderProducts);
+    $("#paymentMethod").on("change", updateCart);
+
 
 </script>
+
+<!-- POS SYSTEM NEW UPDATE VERSION 4.0 -->
+<!-- NEW CHANGES IN SYSTEMS -->
+<!-- NEW CREATED AT MAR 07 2026: 1:02PM -->
+<!-- PESONAL TEST PROJECT FOR PABLO -->
+
 </body>
 </html>
