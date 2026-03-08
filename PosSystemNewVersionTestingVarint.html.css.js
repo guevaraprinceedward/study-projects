@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coffee POS Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+
+  body {
+
+  	background:#f9f9f9;
+  	font-family:'Segoe UI', sans-serif;
+  	font-size:14px;
+  	margin:0;
+
+  }
+  
+  .sidebar {
+
+    height: 100vh;
+    background: #1f2d3d;
+    color: white;
+    position: fixed;
+    width: 220px;
+    padding-top: 20px;
+
+  }
+  
+  .sidebar h4 {
+
+    text-align:center;
+    margin-bottom:30px;
+    font-weight: 600;
+
+  }
+
+  .sidebar a {
+
+    display:block;
+    color:#c2c7d0;
+    padding:10px 20px;
+    text-decoration:none;
+    transition: 0.2s;
+
+  }
+  
+  .sidebar a:hover {
+
+    background:#3c8dbc;
+    color:white;
+
+  }
+  
+  .main{
+
+    margin-left:220px;
+    padding:20px;
+
+  }
+
+  /* PRODUCT CARD */
+  
+.product-card{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:10px;
+    text-align:center;
+    background:white;
+    transition:0.2s;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+  
+.product-card:hover {
+
+	box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transform:scale(1.02);
+    
+  }
+
+.product-img {
+
+    background:transparent;
+    margin-bottom:10px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:120px;
+    overflow:hidden;
+    
+}
+
+  .product-img img {
+
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    display: block;
+    border-radius:6px;
+
+  }
+  
+  /* ADD BUTTON */
+
+  .add-btn {
+
+      background: linear-gradient(45deg, #4B2E2B, #A9746E);
+      color:white;
+      border:none;
+      padding:5px 10px;
+      border-radius:4px;
+      font-size:12px;
+      cursor:pointer;
+      transition: 0.8s ease;
+
+  }
+  
+  .add-btn:hover {
+  
+  	transform: translateY(-10px);
+    transtion: 0.8s ease;
+  
+  }
+  
+  /* CART PANEL (CONTAINER) */
+  
+  .cart-panel {
+  
+  	background:white;
+    border-radius:10px;
+    padding:15px;
+    
+  }
+  
+  .cart-panel table {
+  
+    font-size:13px;
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed; /* Ensures table fits inside panel */
+
+  }
+  
+  .cart-panel table th,
+  .cart-panel table td {
+  
+    padding:6px 8px; /* Slightly Smaller Padding */
+    text-align:center;
+    vertical-align:middle;
+    border-bottom:1px solid #ddd; /* Only Bottom Border For Cleaner Look */
+  
+  }
+
+/* Quantity Buttons Inside The Cart */
+  .cart-panel .qty-btn {
+  
+    width:26px;
+    height:26px;
+    font-size:12px;
+    padding:0;
+    border:none;
+    border-radius:4px;
+    background:#8e44ad;
+    color:white;
+    cursor:pointer;
+    margin:0 2px;
+    transition:0.2s;
+  
+  }
+  
+  .cart-panel .qty-btn:hover {
+  
+  	background:#732d91;
+    
+  }
+  
+  .cart-item {
+
+	border-bottom:1px solid #eee;
+    padding:6px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
+  }
+  
+  .qty-btn-ctm {
+
+	border:none;
+    background: linear-gradient(45deg, #4B2E2B, #A9746E);
+    color:white;
+    width:25px;
+    height:25px;
+    border-radius:4px;
+    margin:0 2px;
+    cursor:pointer;
+    
+  }
+  
+  .checkout-btn {
+  
+  	background: linear-gradient(135deg, #16a05f 0%, #36b39c 100%);
+    color:white;
+    border:none;
+    transition: 0.8s ease;
+    background-size: 200% 200%;
+    
+  }
+  
+  .checkout-btn:hover {
+
+      background-position: right center;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    
+  }
+  
+  .clear-btn {
+  
+    background: linear-gradient(135deg, #e6534b 0%, #d6453d 100%);
+    color:white;
+    border:none;
+    transition: 0.8s ease;
+    background-size: 200% 200%;
+  
+  }
+  
+  .clear-btn:hover {
+  
+      background-position: right center;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    
+  }
+  
+  .checkout-btn, .clear-btn {
+  
+    min-width: 150px;
+    text-align: center;
+    
+  }
+  
+  .fee-container {
+
+    background:#f1f1f1;
+    padding:10px;
+    border-radius:8px;
+    margin-top:15px;
+    transition: 0.8s ease;
+    animation: fadeIn 1.3s ease-out forwards;
+
+  }
+  
+  @keyframes fadeIn {
+  
+  		from {
+        
+        	opacity: 0;
+            
+        }
+        
+        to {
+        
+        	opacity: 1;
+            
+        }
+        
+        
+  }
+
+  .fee-row {
+  
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 5px;
+    margin-bottom:4px;
+    
+  }
+  
+  .fee-row p {
+  
+  	margin: 0;
+    
+  }
+
+  .grand-total {
+
+    font-weight:bold;
+    font-size:16px;
+
+  }
+  
+  /* Completed Orders Table Styling */
+  #completedOrdersTable {
+  
+    background: #fdf6f0; /* Light Cream Color */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+  }
+
+  #completedOrdersTable thead {
+  
+    background: linear-gradient(135deg, #6b4c3b, #a67c52); /* dark mocha to caramel */
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    
+  }
+
+  #completedOrdersTable thead th {
+  
+	transition: background 0.3s, transform 0.2s;
+    background: #f8f1eb; /* light coffee cream */
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+    
+  }
+
+  #completedOrdersTable tbody tr {
+  
+  	transition: background 0.3s, transform 0.2s;
+    background: #f8f1eb;
+    
+  }
+
+  #completedOrdersTable tbody tr:hover {
+  
+  	background: #f4e1d2; /* slightly darker cream */
+    transform: scale(1.02);
+    
+  }
+
+  #completedOrdersTable tbody td {
+
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #d9c7b1; /* coffee beige border */
+    color: #4b2e2b; /* dark coffee brown */
+    
+  }
+
+  #completedOrdersTable_wrapper {
+  
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    
+  }
+
+/* Responsive scroll for small screens */
+  .dataTables_wrapper .dataTables_scroll {
+  
+    border: none;
+    
+  }
+
+/* Optional: style the table search box & length dropdown */
+ 
+  .dataTables_filter input,
+  .dataTables_length select {
+  
+    border-radius: 5px;
+    padding: 3px 8px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    
+  }
+  
+  .table-btn {
+    background: linear-gradient(135deg, #8b5e3c, #d4a373);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.table-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+#completedOrdersTable tbody tr:nth-child(even) {
+    background: #f4e7dd; /* light mocha */
+}
+
+#completedOrdersTable tbody tr:nth-child(odd) {
+    background: #f8f1eb; /* cream */
+}
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<h4>My AyosCoffeeNegosyo POS System</h4>
+<a href="#posSection">POS System</a>
+<a href="#completedOrdersSection">Completed Orders</a>
+</div>
+
+<div class="main">
+
+<section id="posSection">
+<div class="topbar mb-3">
+<h5 style="text-align: center;"> Point of Sales System ( Coffee Products )</h5>
+<span>Admin</span>
+</div>
+
+<div class="row">
+<div class="col-lg-8">
+<div class="d-flex mb-3">
+<input type="text" id="searchProduct" class="form-control me-2" placeholder="Search product...">
+</div>
+<div class="row g-3" id="productList"></div>
+</div>
+
+<div class="col-lg-4">
+<div class="cart-panel">
+<h6>Cart</h6><hr>
+<div id="cartItems"></div><hr>
+<p>Service Charge: <input type="number" id="serviceCharge" class="form-control form-control-sm" value="0"></p>
+<p>Customer: <input type="text" id="customerName" class="form-control form-control-sm" placeholder="Optional"></p>
+<h6 class="mt-3">Payments</h6>
+<select id="paymentMethod" class="form-select form-select-sm mb-2">
+<option value="cash">Cash</option>
+<option value="gcash">GCash</option>
+<option value="card">Card</option>
+</select>
+<div class="fee-container">
+
+<div class="fee-row">
+<p>Subtotal:</p>
+<span>₱<span id="subtotal">0.00</span></span>
+</div>
+
+<div class="fee-row">
+<p>Tax:</p>
+<span>₱<span id="tax">0.00</span></span>
+</div>
+
+<div class="fee-row">
+<p>Service:</p>
+<span>₱<span id="serviceTotal">0.00</span></span>
+</div>
+
+<hr>
+
+<div class="fee-row grand-total">
+<span>Grand Total:</span>
+<span>₱<span id="grandTotal">0.00</span></span>
+</div>
+
+</div>
+
+  <button class="btn checkout-btn w-100 mt-3" id="checkoutBtn">
+    <i class="bi bi-check2-circle me-2"></i> Checkout
+  </button>
+
+  <button class="btn clear-btn w-100 mt-2" id="clearBtn">
+    <i class="bi bi-trash3-fill me-2"></i> Clear
+  </button>
+
+</div>
+</div>
+</div>
+</section>
+
+<hr>
+
+<section id="completedOrdersSection" class="mt-5">
+
+<h4>Completed Orders</h4>
+
+<div class="table-responsive">
+
+<table id="completedOrdersTable" class="table table-bordered nowrap" style="width:100%">
+
+<thead>
+<tr>
+
+<th>#</th>
+
+<th>Customer</th>
+<th>Items</th>
+<th>Subtotal</th>
+<th>Tax</th>
+<th>Service</th>
+<th>Grand Total</th>
+<th>Payment</th>
+<th>Date</th>
+
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+<hr>
+
+<section id="analyticsSection" class="mt-5">
+
+<h4>Sales Analytics</h4>
+
+<div class="row">
+
+<div class="col-md-6">
+<h6>Top 6 Sold Products</h6>
+<ul id="topProductsList" class="list-group"></ul>
+</div>
+
+</div>
+
+<div class="row mt-4">
+
+<div class="col-md-6">
+<h6>Top 5 Products (Units)</h6>
+<canvas id="topProductsChart"></canvas>
+</div>
+
+<div class="col-md-6">
+<h6>Daily Transactions</h6>
+<canvas id="dailyTransactionsChart"></canvas>
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+<script>
+// ===================== DATA =====================
+const products = [
+  {name:"Espresso", price:105, stock:50, imgUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s"},
+  {name:"Caramel Latte", price:125, stock:35, imgUrl:"https://media.istockphoto.com/id/673742908/photo/iced-caramel-latte-coffee-in-a-tall-glass.jpg"},
+  {name:"Mocha Frappe", price:110, stock:45, imgUrl:"https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg"},
+  {name:"Spanish Latte", price:100, stock:70, imgUrl:"https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass.jpeg"},
+  {name:"Americano", price:80, stock:75, imgUrl:"https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg"},
+  {name:"Fruit Soda (Strawberry)", price:75, stock:105, imgUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh8imASMDBrcYvB8b-HbE8zTTAUedjbezTkg&s"}
+];
+
+let cart = [];
+let salesData = [];
+let completedOrdersTable;
+let topProductsChart;
+let dailyChart;
+
+// ===================== INIT =====================
+$(document).ready(() => {
+  completedOrdersTable = $('#completedOrdersTable').DataTable({responsive:true});
+  renderProducts();
+  updateCart();
+});
+
+// ===================== PRODUCTS =====================
+function renderProducts() {
+  const search = $("#searchProduct").val().toLowerCase();
+  $("#productList").empty();
+
+  products.forEach(p => {
+    if (!p.name.toLowerCase().includes(search)) return;
+
+    const stockText = p.stock === 0 ? 'Out of stock' : p.stock;
+    const stockColor = p.stock === 0 ? 'red' : 'black';
+
+    $("#productList").append(`
+      <div class="col-md-4">
+        <div class="product-card">
+          <div class="product-img"><img src="${p.imgUrl}" alt="${p.name}"></div>
+          <h6>${p.name}</h6>
+          <small style="color:${stockColor}">Stock: ${stockText}</small>
+          <p class="mt-2">₱${p.price}</p>
+          <button class="add-btn" ${p.stock===0?'disabled':''} onclick="addToCart('${p.name}', ${p.price})">+ Add</button>
+        </div>
+      </div>
+    `);
+  });
+}
+
+// ===================== CART =====================
+function addToCart(name, price) {
+  const product = products.find(p => p.name === name);
+  if (!product || product.stock === 0) return;
+
+  const existing = cart.find(i => i.name === name);
+  if (existing) {
+    if (existing.qty >= product.stock) {
+      Swal.fire("Not enough stock","","warning");
+      return;
+    }
+    existing.qty++;
+  } else {
+    cart.push({name, price, qty:1});
+  }
+
+  updateCart();
+}
+
+function changeQty(index, amount) {
+  const item = cart[index];
+  const product = products.find(p => p.name === item.name);
+
+  item.qty += amount;
+
+  if (item.qty <= 0) cart.splice(index,1);
+  else if (item.qty > product.stock) item.qty = product.stock;
+
+  updateCart();
+}
+
+function updateCart() {
+  let subtotal = 0;
+  let html = "";
+
+  if (cart.length) {
+    html = `<table class="table table-sm text-center mb-0">
+      <thead>
+        <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th><th>Action</th></tr>
+      </thead>
+      <tbody>`;
+    cart.forEach((item, i) => {
+      const total = item.qty * item.price;
+      subtotal += total;
+      html += `
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.qty}</td>
+          <td>₱${item.price.toFixed(2)}</td>
+          <td>₱${total.toFixed(2)}</td>
+          <td>
+            <button class="qty-btn-ctm" onclick="changeQty(${i}, -1)">-</button>
+            <button class="qty-btn-ctm" onclick="changeQty(${i}, 1)">+</button>
+          </td>
+        </tr>`;
+    });
+    html += `</tbody></table>`;
+  } else {
+    html = `<p class="text-center text-muted mb-0" style="padding:20px;">Cart is empty</p>`;
+  }
+
+  $("#cartItems").html(html);
+
+  const service = parseFloat($("#serviceCharge").val()) || 0;
+  const method = $("#paymentMethod").val();
+  const paymentPercent = method==="cash"?0.10:method==="gcash"?0.20:0.35;
+  const tax = subtotal * paymentPercent;
+  const grandTotal = subtotal + tax + service;
+
+  $("#subtotal").text(subtotal.toFixed(2));
+  $("#tax").text(tax.toFixed(2));
+  $("#serviceTotal").text(service.toFixed(2));
+  $("#grandTotal").text(grandTotal.toFixed(2));
+}
+
+// ===================== CHECKOUT =====================
+$("#checkoutBtn").click(() => {
+  if (!cart.length) return Swal.fire("Cart is empty","","warning");
+
+  Swal.fire({
+    title: "Confirm Checkout?",
+    icon: "question",
+    showCancelButton: true
+  }).then(res => {
+    if (!res.isConfirmed) return;
+
+    const customer = $("#customerName").val() || "Guest";
+    const payment = $("#paymentMethod").val();
+    const subtotal = parseFloat($("#subtotal").text());
+    const tax = parseFloat($("#tax").text());
+    const service = parseFloat($("#serviceCharge").val()) || 0;
+    const grand = parseFloat($("#grandTotal").text());
+    const date = new Date();
+
+    // Save to sales
+    salesData.push({
+      customer,
+      items: cart.map(i => ({name: i.name, qty: i.qty})),
+      subtotal, tax, service, grand, payment, date
+    });
+
+    // Reduce stock
+    cart.forEach(c => {
+      const p = products.find(pr => pr.name === c.name);
+      if (p) p.stock -= c.qty;
+    });
+
+    // Add row to table
+    completedOrdersTable.row.add([
+      completedOrdersTable.rows().count()+1,
+      customer,
+      cart.map(i => `${i.name} x${i.qty}`).join(", "),
+      subtotal.toFixed(2),
+      tax.toFixed(2),
+      service.toFixed(2),
+      grand.toFixed(2),
+      payment.toUpperCase(),
+      date.toLocaleString()
+    ]).draw();
+
+    Swal.fire("Payment Successful","","success");
+    cart = [];
+    updateCart();
+    renderProducts();
+    updateAnalytics();
+  });
+});
+
+// ===================== ANALYTICS =====================
+function updateAnalytics() {
+  const productSales = {};
+  const dailyTransactions = {Monday:0,Tuesday:0,Wednesday:0,Thursday:0,Friday:0,Saturday:0,Sunday:0};
+
+  salesData.forEach(order => {
+    const dayName = order.date.toLocaleDateString('en-US', {weekday:'long'});
+    if(dailyTransactions[dayName]!==undefined) dailyTransactions[dayName]++;
+    order.items.forEach(i => productSales[i.name] = (productSales[i.name]||0)+i.qty);
+  });
+
+  // Top 6 list
+  const top6 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  $("#topProductsList").html(top6.map(p=>`<li class="list-group-item d-flex justify-content-between">${p[0]} <span>${p[1]} sold</span></li>`).join(""));
+
+  createCharts(productSales, dailyTransactions);
+}
+
+// ===================== CHARTS =====================
+function createCharts(productSales, dailyTransactions) {
+  // Top 5 products chart
+  const top5 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  if(topProductsChart) topProductsChart.destroy();
+  topProductsChart = new Chart($("#topProductsChart"), {
+    type:"bar",
+    data:{ labels:top5.map(p=>p[0]), datasets:[{label:"Units Sold", data:top5.map(p=>p[1]), backgroundColor:"#8b5e3c"}] }
+  });
+
+  // Daily transactions chart (Mon → Sun)
+  const daysOrder = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+  if(dailyChart) dailyChart.destroy();
+  dailyChart = new Chart($("#dailyTransactionsChart"), {
+    type:"line",
+    data:{ labels:daysOrder, datasets:[{label:"Transactions", data:daysOrder.map(d=>dailyTransactions[d]), borderColor:"#36b39c", backgroundColor:"rgba(54,179,156,0.2)", fill:true, tension:0.3}] },
+    options:{ responsive:true, plugins:{legend:{display:true}}, scales:{y:{beginAtZero:true, ticks:{stepSize:1}}} }
+  });
+}
+</script>
+
+<!-- ibang scripts mo -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- main javascript file mo -->
+<script src="pos.js"></script>
+
+<!-- POS SYSTEM NEW UPDATE VERSION 5.0 -->
+<!-- NEW CHANGES VARIANTS IN SYSTEMS -->
+<!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
+<!-- NEW SYSTEM ( SALES ANALYTICS ) -->
+<!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
+<!-- NEW CREATED AT MAR 08 2026: 8:53PM -->
+<!-- PESONAL TEST PROJECT FOR PABLO -->
+
+</body>
+</html>
