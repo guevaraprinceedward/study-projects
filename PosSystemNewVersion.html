@@ -86,7 +86,7 @@
 
 .product-img {
 
-    background:#eee;
+    background:transparent;
     margin-bottom:10px;
     border-radius:6px;
     display:flex;
@@ -151,14 +151,14 @@
   .cart-panel table th,
   .cart-panel table td {
   
-    padding:6px 8px; /* slightly smaller padding */
+    padding:6px 8px; /* Slightly Smaller Padding */
     text-align:center;
     vertical-align:middle;
-    border-bottom:1px solid #ddd; /* only bottom border for cleaner look */
+    border-bottom:1px solid #ddd; /* Only Bottom Border For Cleaner Look */
   
   }
 
-/* Qty buttons inside cart */
+/* Quantity Buttons Inside The Cart */
   .cart-panel .qty-btn {
   
     width:26px;
@@ -167,7 +167,7 @@
     padding:0;
     border:none;
     border-radius:4px;
-    background: linear-gradient(135deg, #A9746E, #8B5E3C);
+    background:#8e44ad;
     color:white;
     cursor:pointer;
     margin:0 2px;
@@ -191,13 +191,13 @@
     
   }
   
-  .qty-btn {
+  .qty-btn-ctm {
 
 	border:none;
     background: linear-gradient(45deg, #4B2E2B, #A9746E);
     color:white;
-    width:25px
-    ;height:25px;
+    width:25px;
+    height:25px;
     border-radius:4px;
     margin:0 2px;
     cursor:pointer;
@@ -282,7 +282,12 @@
     align-items:center;
     padding:6px 5px;
     margin-bottom:4px;
-    font-weight: 600;
+    
+  }
+  
+  .fee-row p {
+  
+  	margin: 0;
     
   }
 
@@ -401,7 +406,7 @@
 <body>
 
 <div class="sidebar">
-<h4>My Own POS System</h4>
+<h4>My AyosCoffeeNegosyo POS System</h4>
 <a href="#posSection">POS System</a>
 <a href="#completedOrdersSection">Completed Orders</a>
 </div>
@@ -410,7 +415,7 @@
 
 <section id="posSection">
 <div class="topbar mb-3">
-<h5>Point of Sales ( COFFEE PRODUCTS )</h5>
+<h5 style="text-align: center;"> Point of Sales System ( Coffee Products )</h5>
 <span>Admin</span>
 </div>
 
@@ -515,168 +520,258 @@
 <script>
 
 const products = [
-  {name:"Espresso", price:105, stock:50, imgUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s"},
-  {name:"Caramel Latte", price:125, stock:35, imgUrl:"https://www.shutterstock.com/image-photo/clear-glass-cup-without-handle-600nw-2636039231.jpg"},
-  {name:"Mocha Frappe", price:110, stock:45, imgUrl:"https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg"},
-  {name:"Spanish Latte", price:100, stock:70, imgUrl:"https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass-revealing-distinct-bands-of-coffee-and-milk-the-drink-is-set-on-a-dark-stone-surface-enhancing-its-rich-colors-photo.jpeg"},
-  {name:"Americano", price:80, stock:75, imgUrl:"https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg"},
+{name:"Espresso", price:105, stock:50, imgUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s"},
+{name:"Caramel Latte", price:125, stock:35, imgUrl:"https://media.istockphoto.com/id/673742908/photo/iced-caramel-latte-coffee-in-a-tall-glass.jpg?s=612x612&w=0&k=20&c=L5vH2S7jFqzOM8qGIK-iLKrUfSGGGf68ZPmR5xrdAKU="},
+{name:"Mocha Frappe", price:110, stock:45, imgUrl:"https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg"},
+{name:"Spanish Latte", price:100, stock:70, imgUrl:"https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass-revealing-distinct-bands-of-coffee-and-milk-the-drink-is-set-on-a-dark-stone-surface-enhancing-its-rich-colors-photo.jpeg"},
+{name:"Americano", price:80, stock:75, imgUrl:"https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg"},
 ];
 
-let cart = [];
+let cart=[];
 let completedOrdersTable;
 
 $(document).ready(function(){
-  completedOrdersTable = $('#completedOrdersTable').DataTable({responsive:true});
-  renderProducts();
+completedOrdersTable = $('#completedOrdersTable').DataTable({responsive:true});
+renderProducts();
+updateCart();
 });
 
-// Render products
-function renderProducts() {
-  let searchTerm = $("#searchProduct").val().toLowerCase();
-  $("#productList").empty();
+/* ---------- RENDER PRODUCTS ---------- */
+function renderProducts(){
 
-  products.forEach(p => {
-    if(!p.name.toLowerCase().includes(searchTerm)) return;
+let searchTerm=$("#searchProduct").val().toLowerCase();
+$("#productList").empty();
 
-    $("#productList").append(`
-      <div class="col-md-4">
-        <div class="product-card">
-          <div class="product-img">
-            <img src="${p.imgUrl}" alt="${p.name}">
-          </div>
-          <h6>${p.name}</h6>
-          <small style="color:${p.stock===0?'red':'black'}">
-            Stock: ${p.stock===0?'Out of stock':p.stock}
-          </small>
-          <p class="mt-2">₱${p.price}</p>
-          <button class="add-btn" ${p.stock===0?'disabled style="background:gray;cursor:not-allowed;"':''} 
-            onclick="addToCart('${p.name}',${p.price})">
-            + Add
-          </button>
-        </div>
-      </div>
-    `);
-  });
+products.forEach(p=>{
+
+if(!p.name.toLowerCase().includes(searchTerm)) return;
+
+$("#productList").append(`
+
+<div class="col-md-4">
+<div class="product-card">
+
+<div class="product-img">
+<img src="${p.imgUrl}" alt="${p.name}">
+</div>
+
+<h6>${p.name}</h6>
+
+<small style="color:${p.stock===0?'red':'black'}">
+Stock: ${p.stock===0?'Out of stock':p.stock}
+</small>
+
+<p class="mt-2">₱${p.price}</p>
+
+<button class="add-btn"
+${p.stock===0?'disabled style="background:gray;cursor:not-allowed;"':''}
+onclick="addToCart('${p.name}',${p.price})">
++ Add
+</button>
+
+</div>
+</div>
+
+`);
+});
+
 }
 
-// Add to cart
-function addToCart(name, price){
-  let existing = cart.find(item => item.name === name);
-  if(existing){
-    existing.qty++;
-  } else {
-    cart.push({name, price, qty:1});
-  }
-  updateCart();
+/* ---------- ADD TO CART ---------- */
+function addToCart(name,price){
+
+let product = products.find(p=>p.name===name);
+if(!product || product.stock===0) return;
+
+let existing = cart.find(item=>item.name===name);
+
+if(existing){
+
+if(existing.qty >= product.stock){
+Swal.fire("Not enough stock","","warning");
+return;
 }
 
-// Update cart display
-function updateCart() {
-  let subtotal = 0;
-  let html = "";
+existing.qty++;
 
-  if(cart.length > 0){
-    html = `<table class="table table-sm text-center mb-0">
-      <thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th><th>Action</th></tr></thead><tbody>`;
+}else{
 
-    cart.forEach((item, i) => {
-      let total = item.price * item.qty;
-      subtotal += total;
-      html += `<tr>
-        <td>${item.name}</td>
-        <td>${item.qty}</td>
-        <td>₱${item.price.toFixed(2)}</td>
-        <td>₱${total.toFixed(2)}</td>
-        <td>
-          <button class="qty-btn btn-sm" onclick="changeQty(${i},-1)">-</button>
-          <button class="qty-btn btn-sm" onclick="changeQty(${i},1)">+</button>
-        </td>
-      </tr>`;
-    });
+cart.push({
+name:name,
+price:price,
+qty:1
+});
 
-    html += `</tbody></table>`;
-  } else {
-    html = `<p class="text-center text-muted mb-0" style="padding:20px;">Cart is empty</p>`;
-  }
-
-  $("#cartItems").html(html);
-
-  let service = parseFloat($("#serviceCharge").val()) || 0;
-  let method = $("#paymentMethod").val();
-  let taxPercent = method === "cash" ? 0.10 : method === "gcash" ? 0.20 : 0.35;
-  let tax = subtotal * taxPercent;
-  let grandTotal = subtotal + service + tax;
-
-  $("#subtotal").text(subtotal.toFixed(2));
-  $("#tax").text(tax.toFixed(2));
-  $("#serviceTotal").text(service.toFixed(2));
-  $("#grandTotal").text(grandTotal.toFixed(2));
 }
 
-// Change quantity
-window.changeQty = function(i, amt){
-  cart[i].qty += amt;
-  if(cart[i].qty <= 0) cart.splice(i,1);
-  updateCart();
+updateCart();
+}
+
+/* ---------- UPDATE CART ---------- */
+function updateCart(){
+
+let subtotal=0;
+let html="";
+
+if(cart.length>0){
+
+html=`<table class="table table-sm text-center mb-0">
+<thead>
+<tr>
+<th>Product</th>
+<th>Qty</th>
+<th>Price</th>
+<th>Total</th>
+<th>Action</th>
+</tr>
+</thead><tbody>`;
+
+cart.forEach((item,i)=>{
+
+let total=item.price*item.qty;
+subtotal+=total;
+
+html+=`
+<tr>
+<td>${item.name}</td>
+<td>${item.qty}</td>
+<td>₱${item.price.toFixed(2)}</td>
+<td>₱${total.toFixed(2)}</td>
+<td>
+<button class="qty-btn-ctm btn-sm" onclick="changeQty(${i},-1)">-</button>
+<button class="qty-btn-ctm btn-sm" onclick="changeQty(${i},1)">+</button>
+</td>
+</tr>`;
+});
+
+html+="</tbody></table>";
+
+}else{
+
+html=`<p class="text-center text-muted mb-0" style="padding:20px;">Cart is empty</p>`;
+
+}
+
+$("#cartItems").html(html);
+
+/* TOTALS */
+
+let service=parseFloat($("#serviceCharge").val())||0;
+let method=$("#paymentMethod").val();
+
+let paymentPercent =
+method==="cash" ? 0.10 :
+method==="gcash" ? 0.20 : 0.35;
+
+let tax=subtotal*paymentPercent;
+let grandTotal=subtotal+tax+service;
+
+$("#subtotal").text(subtotal.toFixed(2));
+$("#tax").text(tax.toFixed(2));
+$("#serviceTotal").text(service.toFixed(2));
+$("#grandTotal").text(grandTotal.toFixed(2));
+
+}
+
+/* ---------- CHANGE QTY ---------- */
+window.changeQty=function(i,amt){
+
+let item=cart[i];
+let product=products.find(p=>p.name===item.name);
+
+item.qty+=amt;
+
+if(item.qty<=0){
+cart.splice(i,1);
+}else if(item.qty>product.stock){
+item.qty=product.stock;
+}
+
+updateCart();
+
 };
 
-// Clear cart
-$("#clearBtn").click(() => {
-  cart = [];
-  updateCart();
+/* ---------- CHECKOUT ---------- */
+$("#checkoutBtn").click(()=>{
+
+if(cart.length===0){
+Swal.fire("Cart is empty!","","warning");
+return;
+}
+
+Swal.fire({
+title:"Confirm Checkout?",
+text:"Are you sure you want to checkout these items?",
+icon:"question",
+showCancelButton:true,
+confirmButtonColor:"#4B2E2B",
+cancelButtonColor:"#d33",
+confirmButtonText:"Yes, Checkout",
+cancelButtonText:"Cancel"
+}).then((result)=>{
+
+if(result.isConfirmed){
+
+let customer=$("#customerName").val()||"Guest";
+let items=cart.map(i=>`${i.name} x${i.qty}`).join(", ");
+let subtotal=parseFloat($("#subtotal").text());
+let tax=parseFloat($("#tax").text());
+let service=parseFloat($("#serviceCharge").val())||0;
+let grand=parseFloat($("#grandTotal").text());
+let payment=$("#paymentMethod").val();
+let date=new Date().toLocaleString();
+
+/* STOCK DEDUCTION */
+
+cart.forEach(cartItem=>{
+let product=products.find(p=>p.name===cartItem.name);
+if(product) product.stock-=cartItem.qty;
 });
 
-// Checkout
-$("#checkoutBtn").click(() => {
-  if(cart.length === 0){
-    Swal.fire("Cart is empty!", "", "warning");
-    return;
-  }
+/* ADD TO TABLE */
 
-  let customer = $("#customerName").val() || "Guest";
-  let items = cart.map(i => `${i.name} x${i.qty}`).join(", ");
-  let subtotal = parseFloat($("#subtotal").text());
-  let tax = parseFloat($("#tax").text());
-  let service = parseFloat($("#serviceCharge").val()) || 0;
-  let grand = parseFloat($("#grandTotal").text());
-  let payment = $("#paymentMethod").val();
-  let date = new Date().toLocaleString();
+completedOrdersTable.row.add([
+completedOrdersTable.rows().count()+1,
+customer,
+items,
+subtotal.toFixed(2),
+tax.toFixed(2),
+service.toFixed(2),
+grand.toFixed(2),
+payment.toUpperCase(),
+date
+]).draw();
 
-  // Deduct stock
-  cart.forEach(cartItem => {
-    let product = products.find(p => p.name === cartItem.name);
-    if(product) product.stock -= cartItem.qty;
-  });
+/* SUCCESS */
 
-  // Add to completed orders table
-  completedOrdersTable.row.add([
-    completedOrdersTable.rows().count() + 1,
-    customer,
-    items,
-    subtotal.toFixed(2),
-    tax.toFixed(2),
-    service.toFixed(2),
-    grand.toFixed(2),
-    payment.toUpperCase(),
-    date
-  ]).draw();
-
-  Swal.fire("Payment Successful!", "", "success");
-
-  // Reset cart
-  cart = [];
-  updateCart();
-  renderProducts();
-  $("#customerName").val("");
-  $("#serviceCharge").val("0");
-  $("#paymentMethod").val("cash");
+Swal.fire({
+icon:"success",
+title:"Payment Successful!",
+timer:1500,
+showConfirmButton:false
 });
 
-// Trigger updates
-$("#serviceCharge").on("input", updateCart);
-$("#searchProduct").on("input", renderProducts);
-$("#paymentMethod").on("change", updateCart);
+/* RESET */
 
+cart=[];
+updateCart();
+renderProducts();
+
+$("#customerName").val("");
+$("#serviceCharge").val("0");
+$("#paymentMethod").val("cash");
+
+}
+
+});
+
+});
+
+/* ---------- EVENTS ---------- */
+
+$("#serviceCharge").on("input",updateCart);
+$("#searchProduct").on("input",renderProducts);
+$("#paymentMethod").on("change",updateCart);
 
 </script>
 
