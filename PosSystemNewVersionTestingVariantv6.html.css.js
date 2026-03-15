@@ -409,9 +409,10 @@
 <body>
 
 <div class="sidebar">
-<h4>My AyosCoffeeNegosyo POS System</h4>
-<a href="#posSection">POS System</a>
-<a href="#completedOrdersSection">Completed Orders</a>
+<h4> My AyosCoffeeNegosyo POS System </h4>
+<a href="#posSection"> POS System </a>
+<a href="#completedOrdersSection"> Completed Orders </a>
+<a href="#analyticsSection"> Sales Analytics </a>
 </div>
 
 <div class="main">
@@ -572,7 +573,11 @@ const products = [
   { sku: "BRED & CHEE",name: "Bread n’ Cheese (10 pcs)", price: 99, stock: 100, imgUrl: "https://glutenfreeonashoestring.com/wp-content/uploads/2020/07/Artisan-cheese-bread-600x600-1.jpg" },
   { sku: "CHOC & CRST", name: "Choco n’ Crust (10 pcs)", price: 99, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH_WnTTk7VZTLsjYLUYpZWBcQmVz6ijNB7qA&s" },
   { sku: "SWET-CUST", name: "Sweet Custard (10 pcs)", price: 99, stock: 100, imgUrl: "https://boxitpackages.com/wp-content/uploads/2025/08/Custom-Waffle-Boxes-Wholesale.png" },
-  { sku: "MOZZ-MELT", name: "Mozza Melt (10 pcs)", price: 99, stock: 100, imgUrl: "https://www.wisconsincheesemart.com/cdn/shop/files/1510Mozzarella1_2LoafGlamourHoriz.png?v=1762440037&width=1946" }
+  { sku: "MOZZ-MELT", name: "Mozza Melt (10 pcs)", price: 99, stock: 100, imgUrl: "https://www.wisconsincheesemart.com/cdn/shop/files/1510Mozzarella1_2LoafGlamourHoriz.png?v=1762440037&width=1946" },
+  {	sku: "STRAW-BRED", name: "Strawberry Sweet Bread", price: 99, stock: 100, imgUrl: "https://eatdessertsnack.com/wp-content/uploads/2025/01/Strawberry-Banana-Bread-1200-2.jpg" },
+  { sku: "UBE-BRED", name: "Ube Cheese Melt (10 pcs)", price: 99, stock: 100, imgUrl: "https://curiousflavors.com/wp-content/uploads/2023/09/Untitled-design-2023-09-26T134111.367-1-500x500.jpg" },
+  { sku: "HAO-BEEF", name: "Hao Beef Taco", price: 49, stock: 100, imgUrl: "https://www.thecookierookie.com/wp-content/uploads/2023/09/mexican-burger-recipe-3.jpg" },
+  { sku: "HAO-PEPP", name: "Hao Pepperoni", price: 49, stock: 100, imgUrl: "https://media.istockphoto.com/id/1074255410/photo/bacon-cheese-burger-with-beef-patty-tomato-onion-and-pizza-with-mozzarella-cheese-ham.jpg?s=612x612&w=0&k=20&c=Mxp2FIPXO6yAYoyohKhgtOp4lEfy7AXmZhJBnx4pTLo=" }
 ];
 
 let cart = [];
