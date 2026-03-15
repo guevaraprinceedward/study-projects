@@ -554,24 +554,25 @@
 <script>
 // ===================== DATA =====================
 const products = [
-  { name: "Espresso", price: 109, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s" },
-  { name: "Caramel Latte", price: 119, stock: 100, imgUrl: "https://media.istockphoto.com/id/673742908/photo/iced-caramel-latte-coffee-in-a-tall-glass.jpg?s=612x612&w=0&k=20&c=L5vH2S7jFqzOM8qGIK-iLKrUfSGGGf68ZPmR5xrdAKU=" },
-  { name: "Mocha Frappe", price: 99, stock: 100, imgUrl: "https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg" },
-  { name: "Spanish Latte", price: 99, stock: 100, imgUrl: "https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass-revealing-distinct-bands-of-coffee-and-milk-the-drink-is-set-on-a-dark-stone-surface-enhancing-its-rich-colors-photo.jpeg" },
-  { name: "Americano", price: 79, stock: 100, imgUrl: "https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg" },
-  { name: "Fruit Soda (Strawberry)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh8imASMDBrcYvB8b-HbE8zTTAUedjbezTkg&s" },
-  { name: "Fruit Soda (Blueberry)", price: 59, stock: 100, imgUrl: "https://t4.ftcdn.net/jpg/13/74/01/13/360_F_1374011390_43R0OR9UFPQHIKB4gDZKOjV72XyyLqeN.jpg" },
-  { name: "Fruit Soda (Green Apple)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDJdI5PWErAkJVjedfnzyzVzoTVQxurVlCtg&s" },
-  { name: "Fruit Soda (Galaxy)", price: 69, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMF2FqixDBQLJf5lMKK-Y_ImgR3fWdFKtnJg&s" },
-  { name: "Fruit Soda (Coconut)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/coconut-lime-french-soda-brazilian-white-lemonade-mojito-vegan-trendy-drink-milk-205463573.jpg" },
-  { name: "Fruit Soda (Mango)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpnxG_55J8vAfv5BZyQ3zjI6V8EMAOa6RluQ&s" },
-  { name: "Fruit Soda (Pineapple)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/refreshing-pineapple-soda-float-ice-cream-fresh-fruit-cocktail-top-slice-healthy-drinks-summer-beverages-tropical-385667793.jpg" },
-  { name: "Fruit Soda (Watermelon)", price: 59, stock: 100, imgUrl: "https://senseandedibility.com/wp-content/uploads/2020/05/Watermelon-Italian-Soda-Preview.jpg" },
-  { name: "Fruit Soda (Orange)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/cold-homemade-lemonade-soda-citrus-lime-summer-fruit-441960408.jpg" },
-  { name: "Fruit Soda (Peach)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/summer-cold-drinks-homemade-peach-lemonade-ice-cubes-mint-glasses-glass-wooden-background-93635604.jpg" },
-  { name: "Bread n’ Cheese (10 pcs)", price: 99, stock: 100, imgUrl: "https://glutenfreeonashoestring.com/wp-content/uploads/2020/07/Artisan-cheese-bread-600x600-1.jpg" },
-  { name: "Choco n’ Crust (10 pcs)", price: 99, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH_WnTTk7VZTLsjYLUYpZWBcQmVz6ijNB7qA&s" }
-  {
+  { sku: "COF-ESPR", name: "Espresso", price: 109, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s" },
+  { sku: "COF-CRML", name: "Caramel Latte", price: 119, stock: 100, imgUrl: "https://media.istockphoto.com/id/673742908/photo/iced-caramel-latte-coffee-in-a-tall-glass.jpg?s=612x612&w=0&k=20&c=L5vH2S7jFqzOM8qGIK-iLKrUfSGGGf68ZPmR5xrdAKU=" },
+  { sku: "FRP-MCHA", name: "Mocha Frappe", price: 99, stock: 100, imgUrl: "https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg" },
+  { sku: "COF-SPA", name: "Spanish Latte", price: 99, stock: 100, imgUrl: "https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass-revealing-distinct-bands-of-coffee-and-milk-the-drink-is-set-on-a-dark-stone-surface-enhancing-its-rich-colors-photo.jpeg" },
+  { sku: "COF-AMRC", name: "Americano", price: 79, stock: 100, imgUrl: "https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg" },
+  { sku: "SODA-STRAW", name: "Fruit Soda (Strawberry)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh8imASMDBrcYvB8b-HbE8zTTAUedjbezTkg&s" },
+  { sku: "SODA-BLUE", name: "Fruit Soda (Blueberry)", price: 59, stock: 100, imgUrl: "https://t4.ftcdn.net/jpg/13/74/01/13/360_F_1374011390_43R0OR9UFPQHIKB4gDZKOjV72XyyLqeN.jpg" },
+  { sku: "SODA-GAPL", name: "Fruit Soda (Green Apple)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDJdI5PWErAkJVjedfnzyzVzoTVQxurVlCtg&s" },
+  { sku: "SODA-GALX", name: "Fruit Soda (Galaxy)", price: 69, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMF2FqixDBQLJf5lMKK-Y_ImgR3fWdFKtnJg&s" },
+  { sku: "SODA-COCO", name: "Fruit Soda (Coconut)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/coconut-lime-french-soda-brazilian-white-lemonade-mojito-vegan-trendy-drink-milk-205463573.jpg" },
+  { sku: "SODA-MANG", name: "Fruit Soda (Mango)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpnxG_55J8vAfv5BZyQ3zjI6V8EMAOa6RluQ&s" },
+  { sku: "SODA-PAPPL", name: "Fruit Soda (Pineapple)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/refreshing-pineapple-soda-float-ice-cream-fresh-fruit-cocktail-top-slice-healthy-drinks-summer-beverages-tropical-385667793.jpg" },
+  { sku: "SODA-MELON",name: "Fruit Soda (Watermelon)", price: 59, stock: 100, imgUrl: "https://senseandedibility.com/wp-content/uploads/2020/05/Watermelon-Italian-Soda-Preview.jpg" },
+  { sku: "SODA-ORNG",name: "Fruit Soda (Orange)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/cold-homemade-lemonade-soda-citrus-lime-summer-fruit-441960408.jpg" },
+  { sku: "SODA-PTCH",name: "Fruit Soda (Peach)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/summer-cold-drinks-homemade-peach-lemonade-ice-cubes-mint-glasses-glass-wooden-background-93635604.jpg" },
+  { sku: "BRED & CHEE",name: "Bread n’ Cheese (10 pcs)", price: 99, stock: 100, imgUrl: "https://glutenfreeonashoestring.com/wp-content/uploads/2020/07/Artisan-cheese-bread-600x600-1.jpg" },
+  { sku: "CHOC & CRST", name: "Choco n’ Crust (10 pcs)", price: 99, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH_WnTTk7VZTLsjYLUYpZWBcQmVz6ijNB7qA&s" },
+  { sku: "SWET-CUST", name: "Sweet Custard (10 pcs)", price: 99, stock: 100, imgUrl: "https://boxitpackages.com/wp-content/uploads/2025/08/Custom-Waffle-Boxes-Wholesale.png" },
+  { sku: "MOZZ-MELT", name: "Mozza Melt (10 pcs)", price: 99, stock: 100, imgUrl: "https://www.wisconsincheesemart.com/cdn/shop/files/1510Mozzarella1_2LoafGlamourHoriz.png?v=1762440037&width=1946" }
 ];
 
 let cart = [];
@@ -605,7 +606,7 @@ function renderProducts() {
 
     const stockText = p.stock === 0 ? 'Out of stock' : p.stock;
     const stockColor = p.stock === 0 ? 'red' : 'black';
-    const sku = `SKU: ${String(index + 1).padStart(3, '0')}`;
+    const sku = `SKU: ${p.sku}`;
 
     $("#productList").append(`
       <div class="col-md-4">
@@ -798,5 +799,4 @@ function createCharts(productSales, dailyTransactions) {
 <!-- PESONAL TEST PROJECT FOR PABLO -->
 
 </body>
-</html>
 </html>
