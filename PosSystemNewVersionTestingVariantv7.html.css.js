@@ -10,6 +10,7 @@
 <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
 <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="https://github.com/guevaraprinceedward/study-projects/tree/master">
 <style>
 
   body {
@@ -404,15 +405,109 @@
     background: #f8f1eb; /* cream */
 }
 
+@media (max-width:768px){
+
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:10px;
+}
+
+/* title */
+.sidebar h4{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+/* menu row */
+.nav-menu{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    gap:15px;
+}
+
+/* menu links */
+.nav-menu a{
+    font-size:13px;
+    padding:5px 8px;
+}
+
+/* main full width */
+.main{
+    margin-left:0;
+    padding:15px;
+}
+
+/* Product grid smaller */
+#productList .col-md-4{
+    width:50%;
+}
+
+/* Product image smaller */
+.product-img{
+    height:90px;
+}
+
+/* Product text smaller */
+.product-card h6{
+    font-size:13px;
+}
+
+/* Add button smaller */
+.add-btn{
+    padding:4px 20px;
+    font-size:11px;
+}
+
+/* Cart panel spacing */
+.cart-panel{
+    margin-top:20px;
+}
+
+/* Cart table scrollable */
+.cart-panel table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+/* Checkout buttons stacked */
+.checkout-btn,
+.clear-btn{
+    font-size:13px;
+    padding:8px;
+}
+
+/* Completed orders table smaller text */
+#completedOrdersTable{
+    font-size:12px;
+}
+
+/* Analytics charts spacing */
+#analyticsSection canvas{
+    margin-top:20px;
+}
+
+}
+
 </style>
 </head>
 <body>
 
 <div class="sidebar">
 <h4> My AyosCoffeeNegosyo POS System </h4>
+
+<div class="nav-menu">
 <a href="#posSection"> POS System </a>
 <a href="#completedOrdersSection"> Completed Orders </a>
 <a href="#analyticsSection"> Sales Analytics </a>
+</div>
+
 </div>
 
 <div class="main">
@@ -555,35 +650,35 @@
 <script>
 // ===================== DATA =====================
 const products = [
-  { sku: "COF-ESPR", name: "Espresso", price: 109, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYRrWRfN-Gwg8-YxgxiaVhIZxXUkyVnVp-dw&s" },
+  { sku: "COF-ESPR", name: "Espresso", price: 109, stock: 100, imgUrl: "https://png.pngtree.com/png-clipart/20231018/original/pngtree-espresso-coffee-cup-isolated-png-image_13342545.png" },
   
-  { sku: "COF-CRML", name: "Caramel Latte", price: 119, stock: 100, imgUrl: "https://media.istockphoto.com/id/673742908/photo/iced-caramel-latte-coffee-in-a-tall-glass.jpg?s=612x612&w=0&k=20&c=L5vH2S7jFqzOM8qGIK-iLKrUfSGGGf68ZPmR5xrdAKU=" },
+  { sku: "COF-CRML", name: "Caramel Latte", price: 119, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Caramel.Latte.png" },
   
-  { sku: "FRP-MCHA", name: "Mocha Frappe", price: 99, stock: 100, imgUrl: "https://png.pngtree.com/thumb_back/fh260/background/20240328/pngtree-iced-chocolate-milkshake-frappe-or-blend-image_15645289.jpg" },
+  { sku: "FRP-MCHA", name: "Mocha Frappe", price: 99, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mocha.Frappe.png" },
   
-  { sku: "COF-SPA", name: "Spanish Latte", price: 99, stock: 100, imgUrl: "https://static.vecteezy.com/system/resources/thumbnails/071/808/042/small/a-beautifully-layered-creamy-latte-is-presented-in-a-clear-glass-revealing-distinct-bands-of-coffee-and-milk-the-drink-is-set-on-a-dark-stone-surface-enhancing-its-rich-colors-photo.jpeg" },
+  { sku: "COF-SPA", name: "Spanish Latte", price: 99, stock: 100, imgUrl: "https://png.pngtree.com/png-vector/20241031/ourmid/pngtree-latte-isolated-on-white-background-png-image_14218052.png" },
   
-  { sku: "COF-AMRC", name: "Americano", price: 79, stock: 100, imgUrl: "https://www.shutterstock.com/image-photo/hot-americano-coffee-rich-aroma-600nw-2706827099.jpg" },
+  { sku: "COF-AMRC", name: "Americano", price: 79, stock: 100, imgUrl: "https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-americano-coffee-beans-transparent-white-background-png-image_6698453.png" },
   
-  { sku: "SODA-STRAW", name: "Fruit Soda (Strawberry)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh8imASMDBrcYvB8b-HbE8zTTAUedjbezTkg&s" },
+  { sku: "SODA-STRAW", name: "Fruit Soda (Strawberry)", price: 59, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Strawberry.png" },
   
-  { sku: "SODA-BLUE", name: "Fruit Soda (Blueberry)", price: 59, stock: 100, imgUrl: "https://t4.ftcdn.net/jpg/13/74/01/13/360_F_1374011390_43R0OR9UFPQHIKB4gDZKOjV72XyyLqeN.jpg" },
+  { sku: "SODA-BLUE", name: "Fruit Soda (Blueberry)", price: 59, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Blueberry.png" },
   
-  { sku: "SODA-GAPL", name: "Fruit Soda (Green Apple)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDJdI5PWErAkJVjedfnzyzVzoTVQxurVlCtg&s" },
+  { sku: "SODA-GAPL", name: "Fruit Soda (Green Apple)", price: 59, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Green_Apple.png" },
   
-  { sku: "SODA-GALX", name: "Fruit Soda (Galaxy)", price: 69, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMF2FqixDBQLJf5lMKK-Y_ImgR3fWdFKtnJg&s" },
+  { sku: "SODA-GALX", name: "Fruit Soda (Galaxy)", price: 69, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Galaxy.png" },
   
-  { sku: "SODA-COCO", name: "Fruit Soda (Coconut)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/coconut-lime-french-soda-brazilian-white-lemonade-mojito-vegan-trendy-drink-milk-205463573.jpg" },
+  { sku: "SODA-COCO", name: "Fruit Soda (Coconut)", price: 59, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Coconut.png" },
   
-  { sku: "SODA-MANG", name: "Fruit Soda (Mango)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpnxG_55J8vAfv5BZyQ3zjI6V8EMAOa6RluQ&s" },
+  { sku: "SODA-MANG", name: "Fruit Soda (Mango)", price: 59, stock: 100, imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Mango.png" },
   
-  { sku: "SODA-PAPPL", name: "Fruit Soda (Pineapple)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/refreshing-pineapple-soda-float-ice-cream-fresh-fruit-cocktail-top-slice-healthy-drinks-summer-beverages-tropical-385667793.jpg" },
+  { sku: "SODA-PAPPL", name: "Fruit Soda (Pineapple)", price: 59, stock: 100, imgUrl: "https://png.pngtree.com/png-clipart/20240508/original/pngtree-glass-of-pineapple-juice-and-group-fruits-png-image_15036853.png" },
   
-  { sku: "SODA-MELON",name: "Fruit Soda (Watermelon)", price: 59, stock: 100, imgUrl: "https://senseandedibility.com/wp-content/uploads/2020/05/Watermelon-Italian-Soda-Preview.jpg" },
+  { sku: "SODA-MELON",name: "Fruit Soda (Watermelon)", price: 59, stock: 100, imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdrphUZzZjySH5fAu0tNBlb-YuuWOUSH1T5Q&s" },
   
-  { sku: "SODA-ORNG",name: "Fruit Soda (Orange)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/cold-homemade-lemonade-soda-citrus-lime-summer-fruit-441960408.jpg" },
+  { sku: "SODA-ORNG",name: "Fruit Soda (Orange)", price: 59, stock: 100, imgUrl: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL2hpcHBvdW5pY29ybl9kaWdpdGFsX2FydF9pbGx1c3RyYXRpb25fb2Zfb3JhbmdlX2p1aWNlaXNvbGF0ZWRfb18wODhhZmFjNS05ZTRiLTQyMTItYTQ1ZS0xOGNlNTBhZjVjZDEucG5n.png" },
   
-  { sku: "SODA-PTCH",name: "Fruit Soda (Peach)", price: 59, stock: 100, imgUrl: "https://thumbs.dreamstime.com/b/summer-cold-drinks-homemade-peach-lemonade-ice-cubes-mint-glasses-glass-wooden-background-93635604.jpg" },
+  { sku: "SODA-PTCH",name: "Fruit Soda (Peach)", price: 59, stock: 100, imgUrl: "https://img.freepik.com/premium-photo/glass-peach-juice-cut-fresh-peach-fruits-isolated-white-background_124717-835.jpg?w=360" },
   
   { sku: "TAO-CHEE",name: "Tao Waffle n’ Cheese (10 pcs)", price: 99, stock: 100, imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHEE.png" },
   
@@ -820,12 +915,12 @@ function createCharts(productSales, dailyTransactions) {
 <!-- GITHUB: IMPLEMENT ACCOUNT -->
 
 
-<!-- POS SYSTEM NEW UPDATE VERSION 5.0 -->
+<!-- POS SYSTEM NEW UPDATE VERSION 6.0 -->
 <!-- NEW CHANGES VARIANTS IN SYSTEMS -->
 <!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
 <!-- NEW SYSTEM ( SALES ANALYTICS ) -->
 <!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
-<!-- NEW CREATED AT MAR 08 2026: 8:53PM -->
+<!-- NEW CREATED AT MAR 17 2026: 8:53PM -->
 <!-- PESONAL TEST PROJECT FOR PABLO -->
 
 </body>
