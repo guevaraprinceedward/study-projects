@@ -889,39 +889,38 @@ function checkout() {
   });
 }
 
+// ===================== ANALYTICS =====================
+function updateAnalytics() {
+  const productSales = {};
+  const dailyTransactions = {Monday:0,Tuesday:0,Wednesday:0,Thursday:0,Friday:0,Saturday:0,Sunday:0};
+
+  salesData.forEach(order => {
+    const day = order.date.toLocaleDateString('en-US', { weekday: 'long' });
+    if (dailyTransactions[day] !== undefined) dailyTransactions[day]++;
+    order.items.forEach(i => productSales[i.name] = (productSales[i.name] || 0) + i.qty);
+  });
+
+  const top6 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  $("#topProductsList").html(top6.map(p=>`<li class="list-group-item d-flex justify-content-between">${p[0]} <span>${p[1]} sold</span></li>`).join(""));
+
+  createCharts(productSales, dailyTransactions);
+}
+
 // ===================== CHARTS =====================
 function createCharts(productSales, dailyTransactions) {
   const top5 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,5);
-
   if (topProductsChart) topProductsChart.destroy();
   topProductsChart = new Chart($("#topProductsChart"), {
     type: "bar",
-    data: {
-      labels: top5.map(p=>p[0]),
-      datasets: [{ label:"Units Sold", data: top5.map(p=>p[1]), backgroundColor: "#8b5e3c" }]
-    }
+    data: { labels: top5.map(p=>p[0]), datasets: [{ label:"Units Sold", data: top5.map(p=>p[1]), backgroundColor: "#8b5e3c" }] }
   });
 
   const days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
   if (dailyChart) dailyChart.destroy();
   dailyChart = new Chart($("#dailyTransactionsChart"), {
     type: "line",
-    data: {
-      labels: days,
-      datasets: [{
-        label:"Transactions",
-        data: days.map(d=>dailyTransactions[d]),
-        borderColor:"#36b39c",
-        backgroundColor:"rgba(54,179,156,0.2)",
-        fill:true,
-        tension:0.3
-      }]
-    },
-    options: {
-      responsive:true,
-      plugins:{legend:{display:true}},
-      scales:{y:{beginAtZero:true, ticks:{stepSize:1}}}
-    }
+    data: { labels: days, datasets: [{ label:"Transactions", data: days.map(d=>dailyTransactions[d]), borderColor:"#36b39c", backgroundColor:"rgba(54,179,156,0.2)", fill:true, tension:0.3 }] },
+    options: { responsive:true, plugins:{legend:{display:true}}, scales:{y:{beginAtZero:true, ticks:{stepSize:1}}} }
   });
 }
 
@@ -944,7 +943,7 @@ function createCharts(productSales, dailyTransactions) {
 <!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
 <!-- NEW SYSTEM ( SALES ANALYTICS ) -->
 <!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
-<!-- NEW CREATED AT MAR 17 2026: 8:06PM -->
+<!-- NEW CREATED AT MAR 17 2026: 8:17PM -->
 <!-- PESONAL TEST PROJECT FOR PABLO -->
 
 </body>
