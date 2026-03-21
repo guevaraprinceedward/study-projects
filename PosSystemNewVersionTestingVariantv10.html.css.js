@@ -709,10 +709,21 @@ const products = [
   
   { sku: "TAO-UBE", name: "Tao Ube Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-UBE.png" },
   
+  { sku: "TAO-BNA-CRML", name: "Banana Caramel Drizzle Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Banana.Caramel.Drizzle.Waffles.png" },
+  
+  { sku: "TAO-BLUE-RYL", name: "Tao Blueberry Cream Royale Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Blueberry.Cream.Royale.Waffles.png" },
+  
+  { sku: "TAO-CRML-CHEE", name: "Tao Caramel Cheesecake Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Caramel.Cheesecake.Waffles.png" },
+  
   { sku: "TAO-MANG-CHEE", name: "Tao Mango Cheesecake Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mango.Cheesecake.WaffleV2.png" },
   
   { sku: "TAO-MAT-CRM", name: "Tao Matcha Cream Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Cream.Waffles.png" },
   
+  { sku: "TAO-HON-ALM", name: "Tao Honey Almond Cream Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Honey.Almond.Cream.Waffles.png" },
+  
+  { sku: "TAO-PEA-CHR", name: "Tao Peach Charm Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Peach.Charm.Waffles.png" },
+  
+  { sku: "TAO-HAZ-TRF", name: "Tao Hazelnut Truffle Waffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Hazelnut.Truffle.Waffles.png" },
   
   { sku: "HAO-BEEF", name: "Hao Beef Taco", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-BEEF.png" },
   
@@ -895,38 +906,38 @@ function checkout() {
 }
 
 // ===================== CHARTS =====================
+// ===================== ANALYTICS =====================
+function updateAnalytics() {
+  const productSales = {};
+  const dailyTransactions = {Monday:0,Tuesday:0,Wednesday:0,Thursday:0,Friday:0,Saturday:0,Sunday:0};
+
+  salesData.forEach(order => {
+    const day = order.date.toLocaleDateString('en-US', { weekday: 'long' });
+    if (dailyTransactions[day] !== undefined) dailyTransactions[day]++;
+    order.items.forEach(i => productSales[i.name] = (productSales[i.name] || 0) + i.qty);
+  });
+
+  const top6 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  $("#topProductsList").html(top6.map(p=>`<li class="list-group-item d-flex justify-content-between">${p[0]} <span>${p[1]} sold</span></li>`).join(""));
+
+  createCharts(productSales, dailyTransactions);
+}
+
+// ===================== CHARTS =====================
 function createCharts(productSales, dailyTransactions) {
   const top5 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,5);
-
   if (topProductsChart) topProductsChart.destroy();
   topProductsChart = new Chart($("#topProductsChart"), {
     type: "bar",
-    data: {
-      labels: top5.map(p=>p[0]),
-      datasets: [{ label:"Units Sold", data: top5.map(p=>p[1]), backgroundColor: "#8b5e3c" }]
-    }
+    data: { labels: top5.map(p=>p[0]), datasets: [{ label:"Units Sold", data: top5.map(p=>p[1]), backgroundColor: "#8b5e3c" }] }
   });
 
   const days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
   if (dailyChart) dailyChart.destroy();
   dailyChart = new Chart($("#dailyTransactionsChart"), {
     type: "line",
-    data: {
-      labels: days,
-      datasets: [{
-        label:"Transactions",
-        data: days.map(d=>dailyTransactions[d]),
-        borderColor:"#36b39c",
-        backgroundColor:"rgba(54,179,156,0.2)",
-        fill:true,
-        tension:0.3
-      }]
-    },
-    options: {
-      responsive:true,
-      plugins:{legend:{display:true}},
-      scales:{y:{beginAtZero:true, ticks:{stepSize:1}}}
-    }
+    data: { labels: days, datasets: [{ label:"Transactions", data: days.map(d=>dailyTransactions[d]), borderColor:"#36b39c", backgroundColor:"rgba(54,179,156,0.2)", fill:true, tension:0.3 }] },
+    options: { responsive:true, plugins:{legend:{display:true}}, scales:{y:{beginAtZero:true, ticks:{stepSize:1}}} }
   });
 }
 
