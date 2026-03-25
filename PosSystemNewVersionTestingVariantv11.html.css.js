@@ -749,6 +749,8 @@ const products = [
   { sku: "COF-SPA", name: "Spanish Latte", price: 99, stock: 100, category: "coffee", imgUrl: "https://png.pngtree.com/png-vector/20241031/ourmid/pngtree-latte-isolated-on-white-background-png-image_14218052.png" },
   
   { sku: "COF-AMRC", name: "Americano", price: 79, stock: 100, category: "coffee", imgUrl: "https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-americano-coffee-beans-transparent-white-background-png-image_6698453.png" },
+
+  { sku: "COF-MAT", name: "Matcha Cream", price: 99, stock: 100, category: "coffee", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Latte.Coffee.png" },
   
   { sku: "SODA-STRAW", name: "Fruit Soda (Strawberry)", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Strawberry.png" },
   
