@@ -603,7 +603,8 @@
   <!-- CATEGORY (RIGHT) -->
   <select id="categoryFilter" class="form-select" style="max-width:200px;">
     <option value="all">All Categories</option>
-    <option value="coffee">Coffee</option>
+    <option value="coffee">Coffee - Classic</option>
+    <option value="coffee-series">Coffee - Series</option>
     <option value="soda">Fruit Soda</option>
     <option value="tao">Tao (Mini Waffles)</option>
     <option value="hao">Cheesy Stuffed Bread (Hao)</option>
@@ -752,6 +753,18 @@ const products = [
 
   { sku: "COF-MAT", name: "Matcha Cream", price: 99, stock: 100, category: "coffee", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Latte.Coffee.png" },
   
+  { sku: "COF-HON-ELGN", name: "Honey Élégance", price: 99, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Lavander.Honey.Latte.Coffee.png" },
+  
+  { sku: "COF-LAV-HON", name: "Lavander Honey Latte", price: 99, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Lavander.Honey.Latte.Coffee.png" },
+  
+  { sku: "COF-MID-COA", name: "Midnight Cocoa Blend", price: 99, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Midnight.Cocoa.Blend.Coffee.png" },
+  
+  { sku: "COF-BURN-CRML", name: "Burn't Caramel Luxe", price: 109, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Burnt.Caramel.Luxe.Coffee.png" },
+  
+  { sku: "COF-VAN-WHIS", name: "Vanilla Bean Whisper", price: 99, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Vanilla.Bean.Whisper.Coffee.png"  },
+  
+  { sku: "COF-AMB-SPIC", name: "Amber Spiced Latte", price: 109, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Amber.Spiced.Iced.Latte.Coffee.png" },
+  
   { sku: "SODA-STRAW", name: "Fruit Soda (Strawberry)", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Strawberry.png" },
   
   { sku: "SODA-BLUE", name: "Fruit Soda (Blueberry)", price: 59, stock: 100, category: "soda",  imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Blueberry.png" },
@@ -804,7 +817,12 @@ const products = [
   
   { sku: "HAO-BEEF", name: "Hao Beef Taco", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-BEEF.png" },
   
-  { sku: "HAO-PEPP", name: "Hao Pepperoni", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-PEPP.png" }
+  { sku: "HAO-PEPP", name: "Hao Pepperoni", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-PEPP.png" },
+  
+  { sku: "HAO-PEST-CRM", name: "Hao Pesto Cream", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Pesto.Cream.Cheesy.Stuffed.Bread.png" },
+  
+  { sku: "HAO-MUSH-FON", name: "Hao Mushroom & Fontina", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mushroom.and.Fontina.Stuffed.Rolls.png" }
+  
 ];
 
 let cart = [];
