@@ -740,7 +740,7 @@
 
 <div class="profile-container">
   <img src="https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/CEO.Mr.JohnPaul.Ramos.Image.png" alt="Mr.Paul">
-  <h6 class="profile-name">Owner: Mr. John Paul Pedron</h6>
+  <h6 class="profile-name">Owner: Mr. ???</h6>
   <p class="profile-role">CEO of Ayos Coffee Negosyo</p>
 </div>
 
@@ -796,7 +796,7 @@
     <option value="coffee">Coffee - Classic</option>
     <option value="coffee-series">Coffee - Series</option>
     <option value="soda">Fruit Soda - Classic</option>
-    <option value-"soda-series">Fruit Soda - Series<
+    <option value="soda-series">Fruit Soda - Series</option>
     <option value="tao">Tao (Mini Waffles)</option>
     <option value="hao">Cheesy Stuffed Bread (Hao)</option>
   </select>
@@ -972,25 +972,35 @@ const products = [
   
   { sku: "COF-AMB-SPIC", name: "Amber Spiced Latte", price: 109, stock: 100, category: "coffee-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Amber.Spiced.Iced.Latte.Coffee.png" },
   
-  { sku: "SODA-STRAW", name: "Fruit Soda (Strawberry)", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Strawberry.png" },
+  { sku: "SODA-STRAW", name: "Fruit Soda Strawberry", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Strawberry.png" },
   
-  { sku: "SODA-BLUE", name: "Fruit Soda (Blueberry)", price: 59, stock: 100, category: "soda",  imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Blueberry.png" },
+  { sku: "SODA-BLUE", name: "Fruit Soda Blueberry", price: 59, stock: 100, category: "soda",  imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Blueberry.png" },
   
-  { sku: "SODA-GAPL", name: "Fruit Soda (Green Apple)", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Green_Apple.png" },
+  { sku: "SODA-GAPL", name: "Fruit Soda Green Apple", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Green_Apple.png" },
   
-  { sku: "SODA-GALX", name: "Fruit Soda (Galaxy)", price: 69, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Galaxy.png" },
+  { sku: "SODA-COCO", name: "Fruit Soda Coconut", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Coconut.png" },
   
-  { sku: "SODA-COCO", name: "Fruit Soda (Coconut)", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Coconut.png" },
+  { sku: "SODA-MANG", name: "Fruit Soda Mango", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Mango.png" },
   
-  { sku: "SODA-MANG", name: "Fruit Soda (Mango)", price: 59, stock: 100, category: "soda", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Mango.png" },
+  { sku: "SODA-PAPPL", name: "Fruit Soda Pineapple", price: 59, stock: 100, category: "soda", imgUrl: "https://png.pngtree.com/png-clipart/20240508/original/pngtree-glass-of-pineapple-juice-and-group-fruits-png-image_15036853.png" },
   
-  { sku: "SODA-PAPPL", name: "Fruit Soda (Pineapple)", price: 59, stock: 100, category: "soda", imgUrl: "https://png.pngtree.com/png-clipart/20240508/original/pngtree-glass-of-pineapple-juice-and-group-fruits-png-image_15036853.png" },
+  { sku: "SODA-MELON",name: "Fruit Soda Watermelon", price: 59, stock: 100, category: "soda", imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdrphUZzZjySH5fAu0tNBlb-YuuWOUSH1T5Q&s" },
   
-  { sku: "SODA-MELON",name: "Fruit Soda (Watermelon)", price: 59, stock: 100, category: "soda", imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdrphUZzZjySH5fAu0tNBlb-YuuWOUSH1T5Q&s" },
+  { sku: "SODA-ORNG",name: "Fruit Soda Orange", price: 59, stock: 100, category: "soda", imgUrl: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL2hpcHBvdW5pY29ybl9kaWdpdGFsX2FydF9pbGx1c3RyYXRpb25fb2Zfb3JhbmdlX2p1aWNlaXNvbGF0ZWRfb18wODhhZmFjNS05ZTRiLTQyMTItYTQ1ZS0xOGNlNTBhZjVjZDEucG5n.png" },
   
-  { sku: "SODA-ORNG",name: "Fruit Soda (Orange)", price: 59, stock: 100, category: "soda", imgUrl: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL2hpcHBvdW5pY29ybl9kaWdpdGFsX2FydF9pbGx1c3RyYXRpb25fb2Zfb3JhbmdlX2p1aWNlaXNvbGF0ZWRfb18wODhhZmFjNS05ZTRiLTQyMTItYTQ1ZS0xOGNlNTBhZjVjZDEucG5n.png" },
+  { sku: "SODA-PTCH",name: "Fruit Soda Peach", price: 59, stock: 100, category: "soda", imgUrl: "https://img.freepik.com/premium-photo/glass-peach-juice-cut-fresh-peach-fruits-isolated-white-background_124717-835.jpg?w=360" },
   
-  { sku: "SODA-PTCH",name: "Fruit Soda (Peach)", price: 59, stock: 100, category: "soda", imgUrl: "https://img.freepik.com/premium-photo/glass-peach-juice-cut-fresh-peach-fruits-isolated-white-background_124717-835.jpg?w=360" },
+  { sku: "SODA-GALX", name: "Fruit Soda Galaxy", price: 69, stock: 100, category: "soda-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Galaxy.png" },
+  
+  { sku: "SODA-SUN", name: "Fruit Soda Sunrise", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  
+  { sku: "SODA-AMBER", name: "Fruit Soda Amber Glow", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  
+  { sku: "SODA-BLU-BREE", name: "Fruit Soda Blush Breeze", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  
+  { sku: "SODA-PALM-BREE", name: "Fruit Soda Palm Breeze", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  
+  { sku: "SODA-OCN-MIST", name: "Fruit Soda Ocean Mist", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
   
   { sku: "TAO-CHEE",name: "Tao Waffle n’ Cheese (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHEE.png" },
   
@@ -1000,7 +1010,7 @@ const products = [
   
   { sku: "TAO-MOZZ", name: "Tao Mozzarella (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-MOZZ.png" },
   
-  {	sku: "TAO-STRAW", name: "Tao Strawberry", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-STRAW.png" },
+  {	sku: "TAO-STRAW", name: "Tao Strawberry (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-STRAW.png" },
   
   { sku: "TAO-UBE", name: "Tao Ube (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-UBE.png" },
   
@@ -1181,11 +1191,11 @@ function updateCart() {
     html += `<table class="table table-sm">
       <thead>
         <tr>
-          <th>Product</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Total</th>
-          <th>Action</th>
+          <th style="background-color: #ededed;">Product</th>
+          <th style="background-color: #ededed;">Qty</th>
+          <th style="background-color: #ededed;">Price</th>
+          <th style="background-color: #ededed;">Total</th>
+          <th style="background-color: #ededed;">Action</th>
         </tr>
       </thead>
       <tbody>`;
@@ -1199,17 +1209,40 @@ function updateCart() {
         <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">${item.name}</div></td>
         <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">
           <input type="number" min="1" max="${product.stock}" value="${item.qty}" 
-                 style="width:50px; text-align:center;" onchange="setQty(${i}, this.value)">
+                 style="width:50px; border-radius: 8px; text-align:center;" onchange="setQty(${i}, this.value)">
         </div></td>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">₱${item.price.toFixed(2)}</div></td>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">₱${total.toFixed(2)}</div></td>
+        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">Php ${item.price.toFixed(2)}</div></td>
+        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">Php ${total.toFixed(2)}</div></td>
         <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">
-          <button class="qty-btn-ctm" style="background:#e74c3c;" onclick="removeItem(${i})">X</button>
+          <button class="qty-btn-ctm" style="background:#e74c3c;" onclick="removeItem(${i})"><i class="bi bi-x-lg"></i></button>
         </div></td>
       </tr>`;
     });
 
     html += `</tbody></table>`;
+    
+} else {
+
+  html += `<table class="table table-sm">
+    <thead>
+      <tr>
+        <th style="background-color: #ededed;">Product</th>
+        <th style="background-color: #ededed;">Qty</th>
+        <th style="background-color: #ededed;">Price</th>
+        <th style="background-color: #ededed;">Total</th>
+        <th style="background-color: #ededed;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5" style="text-align:center; background-color: #f9f9f9; padding:20px; color:#999;">
+          No items yet.
+        </td>
+      </tr>
+    </tbody>
+  </table>`;
+
+
   }
 
   $("#cartItems").html(html);
@@ -1355,13 +1388,13 @@ function formatName(name) {
 <!-- GITHUB: IMPLEMENT ACCOUNT -->
 
 
-<!-- POS SYSTEM NEW UPDATE VERSION 9.0 -->
-<!-- NEW CHANGES VARIANTS IN SYSTEMS -->
+<!-- POS SYSTEM NEW UPDATE VERSION 10.0 -->
+<!-- NEW CHANGES VARIANTS IN SYSTEMS ( FIXED ) -->
 <!-- NEW CHANGES: SIDEBAR PROFILE & BRAND LOGO -->
 <!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
 <!-- NEW SYSTEM ( SALES ANALYTICS ) -->
 <!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
-<!-- NEW CREATED AT MAR 28 2026: 10:58PM -->
+<!-- NEW CREATED AT MAR 30 2026: 2:01AM -->
 <!-- PESONAL TEST PROJECT FOR PABLO -->
 
 </body>
