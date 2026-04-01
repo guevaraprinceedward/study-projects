@@ -13,6 +13,21 @@
 <link href="https://github.com/guevaraprinceedward/study-projects/tree/master">
 <style>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coffee POS Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="https://github.com/guevaraprinceedward/study-projects/tree/master">
+<style>
+
 
   body {
 
@@ -733,6 +748,42 @@
 
 }
 
+#searchProduct:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#paymentMethod:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#amountPaid:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#serviceCharge:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#customerName:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#categoryFilter:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
 </style>
 </head>
 <body>
@@ -840,6 +891,7 @@
   </div>
   <span>Cart</span><hr>
 </div>
+
 
 	<div id="cartItems"></div><hr>
 
@@ -1035,7 +1087,7 @@ const products = [
   
   { sku: "SODA-OCN-MIST", name: "Fruit Soda Ocean Mist", price: 69, stock: 100, category: "soda-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Ocean.Mist.png" },
   
-  { sku: "TAO-CHEE",name: "Tao Waffle n’ Cheese (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHEE.png" },
+  { sku: "TAO-CHEE",name: "Tao Cream Cheese (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHEE.png" },
   
   { sku: "TAO-CHOC", name: "Tao Choco n' Crust (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHOC.png" },
   
@@ -1053,17 +1105,17 @@ const products = [
   
   { sku: "TAO-CRML-CHEE", name: "Tao Caramel Cheesecake (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Caramel.Cheesecake.Waffles.png" },
   
-  { sku: "TAO-MANG-CHEE", name: "Tao Mango Cheesecake (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mango.Cheesecake.WaffleV2.png" },
+  { sku: "TAO-MANG-CHEE", name: "Tao Mango Cheesecake (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mango.Cheesecake.Waffles.png" },
   
-  { sku: "TAO-MAT-CRM", name: "Tao Matcha Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Cream.Waffles.png" },
+  { sku: "TAO-MAT-CRM", name: "Tao Matcha Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Cream.With.Cheese.Waffles.png" },
   
-  { sku: "TAO-HON-ALM", name: "Tao Honey Almond Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Honey.Almond.Cream.Waffles.png" },
+  { sku: "TAO-HON-ALM", name: "Tao Honey Almond Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Honey.Almond.With.Cheese.Waffles.png" },
   
-  { sku: "TAO-PEA-CHR", name: "Tao Peach Charm (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Peach.Charm.Waffles.png" },
+  { sku: "TAO-PEA-CHR", name: "Tao Peach Charm (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Peach.Cream.With.Cheese.Butter.Waffles.png" },
   
-  { sku: "TAO-HAZ-TRF", name: "Tao Hazelnut Truffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Hazelnut.Truffle.Waffles.png" },
+  { sku: "TAO-HAZ-TRF", name: "Tao Hazelnut Truffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Hazelnut.Truffle.With.Cheese.Cocoa.Waffles.png" },
   
-  { sku: "TAO-VEL-CRME", name: "Tao Velgian Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Velgian.Cream.Waffles.png" },
+  { sku: "TAO-VEL-CRME", name: "Tao Velgian Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Belgian.Cream.With.Berries.Waffles.png" },
   
   { sku: "HAO-BEEF", name: "Hao Beef Taco", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-BEEF.png" },
   
@@ -1071,9 +1123,9 @@ const products = [
   
   { sku: "HAO-PEPP", name: "Hao Pepperoni", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-PEPP.png" },
   
-  { sku: "HAO-PEST-CRM", name: "Hao Pesto Cream", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Pesto.Cream.Cheesy.Stuffed.Bread.png" },
+  { sku: "HAO-PEST-CRM", name: "Hao Pesto Cream", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Pesto.Cream.With.Cheese.Cheesy.Stuffed.Bread.png" },
   
-  { sku: "HAO-MUSH-FON", name: "Hao Mushroom & Fontina", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mushroom.and.Fontina.Stuffed.Rolls.png" },
+  { sku: "HAO-MUSH-FON", name: "Hao Mushroom & Fontina", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Cheesy.Mushroom.With.Cream.Cheesy.Stuffed.Bread.png" },
   
   { sku: "HAO-GAR-HERB", name: "Hao Garlic Herb Supreme", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Garlic.Herb.Fromage.Supreme.Cheesy.Stuffed.Bread.png" },
   
@@ -1239,7 +1291,7 @@ function updateCart() {
                 <td><input type="number" min="1" max="${product.stock}" value="${item.qty}" style="width:50px; text-align:center;" onchange="setQty(${i}, this.value)"></td>
                 <td>Php ${item.price.toFixed(2)}</td>
                 <td>Php ${total.toFixed(2)}</td>
-                <td><button class="btn btn-sm btn-danger" onclick="removeItem(${i})"><i class="bi bi-x-lg"></i></button></td>
+                <td><button class="btn btn-sm btn-danger" style="font-size: 10px;" onclick="removeItem(${i})"><i class="bi bi-x-lg"></i></button></td>
             </tr>`;
         });
 
@@ -1367,7 +1419,7 @@ function checkout() {
 <!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
 <!-- NEW SYSTEM ( SALES ANALYTICS ) -->
 <!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
-<!-- NEW CREATED AT APR 1 2026: 3:38AM -->
+<!-- NEW CREATED AT APR 2 2026: 4:24AM -->
 <!-- PESONAL TEST PROJECT FOR PABLO -->
 
 </body>
