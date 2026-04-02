@@ -47,6 +47,54 @@
 }
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coffee POS Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="https://github.com/guevaraprinceedward/study-projects/tree/master">
+<style>
+
+  body {
+
+	background: #eef2f5;
+  	font-family:'Segoe UI', sans-serif;
+  	font-size:14px;
+  	margin:0;
+    
+
+  }
+  
+.brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: #0f2233;
+  border-left: 3px solid #4dd0e1;
+  margin-bottom: 15px;
+}
+
+.brand-icon {
+  color: #4dd0e1;
+  font-size: 14px;
+}
+
+.brand-title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
   
   .sidebar {
 
@@ -183,17 +231,17 @@
     font-size:13px;
     width:100%;
     border-collapse:collapse;
-    table-layout:fixed; /* Ensures table fits inside panel */
+    table-layout:fixed;
 
   }
   
   .cart-panel table th,
   .cart-panel table td {
   
-    padding:6px 8px; /* Slightly Smaller Padding */
+    padding:6px 8px;
     text-align:center;
     vertical-align:middle;
-    border-bottom:1px solid #ddd; /* Only Bottom Border For Cleaner Look */
+    border-bottom:1px solid #ddd;
   
   }
 
@@ -247,9 +295,11 @@
     background: linear-gradient(135deg, #16a05f 0%, #36b39c 100%);
     color: white;
     border: none;
-    transition: 0.8s ease;
     background-size: 200% 200%;
     text-align: center;
+    font-size: 13px;
+    transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(22, 160, 95, 0.3);
 }
 
 .checkout-btn:hover {
@@ -262,9 +312,11 @@
     background: linear-gradient(135deg, #e6534b 0%, #d6453d 100%);
     color: white;
     border: none;
-    transition: 0.8s ease;
     background-size: 200% 200%;
     text-align: center;
+    font-size: 13px;
+    transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(22, 160, 95, 0.3);
 }
 
 .clear-btn:hover {
@@ -327,7 +379,7 @@
   /* Completed Orders Table Styling */
   #completedOrdersTable {
   
-    background: #fdf6f0; /* Light Cream Color */
+    background: #fdf6f0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -336,7 +388,7 @@
 
   #completedOrdersTable thead {
   
-    background: linear-gradient(135deg, #6b4c3b, #a67c52); /* dark mocha to caramel */
+    background: linear-gradient(135deg, #6b4c3b, #a67c52);
     color: #fff;
     font-weight: bold;
     text-align: center;
@@ -346,7 +398,7 @@
   #completedOrdersTable thead th {
   
 	transition: background 0.3s, transform 0.2s;
-    background: #f8f1eb; /* light coffee cream */
+    background: #f8f1eb;
     border: none;
     text-align: center;
     vertical-align: middle;
@@ -362,7 +414,7 @@
 
   #completedOrdersTable tbody tr:hover {
   
-  	background: #f4e1d2; /* slightly darker cream */
+  	background: #f4e1d2;
     transform: scale(1.02);
     
   }
@@ -371,8 +423,8 @@
 
     text-align: center;
     vertical-align: middle;
-    border-top: 1px solid #d9c7b1; /* coffee beige border */
-    color: #4b2e2b; /* dark coffee brown */
+    border-top: 1px solid #d9c7b1;
+    color: #4b2e2b;
     
   }
 
@@ -420,11 +472,11 @@
 }
 
 #completedOrdersTable tbody tr:nth-child(even) {
-    background: #f4e7dd; /* light mocha */
+    background: #f4e7dd;
 }
 
 #completedOrdersTable tbody tr:nth-child(odd) {
-    background: #f8f1eb; /* cream */
+    background: #f8f1eb;
 }
 
 @media (max-width:768px){
@@ -542,12 +594,6 @@
     white-space:nowrap;
 }
 
-/* Checkout buttons stacked */
-.checkout-btn,
-.clear-btn{
-    font-size:13px;
-    padding:8px;
-}
 
 /* Completed orders table smaller text */
 #completedOrdersTable{
@@ -564,7 +610,7 @@
 /* CART TABLE SPACING */
 .cart-panel table td,
 .cart-panel table th {
-    padding: 10px 8px;  /* vertical 10px, horizontal 8px */
+    padding: 10px 8px;
     text-align: center;
     vertical-align: middle;
 }
@@ -612,13 +658,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; 	/* Spacing */
+  gap: 10px;
 }
 
 /* PRODUCT NAME MULTILINE */
 .product-name {
   flex-direction: column;
-  align-items: flex-start; /* Left aligned text */
+  align-items: flex-start;
   gap: 2px;
   line-height: 1.2;
 }
@@ -642,7 +688,7 @@
 .profile-container img {
   width: 105px;
   height: 105px;
-  border-radius: 50%; /* Make it Circle ( Profie Looks ) */
+  border-radius: 50%;
   object-fit: cover;
   border: 3px solid #36b39c;
   margin-bottom: 8px;
@@ -731,6 +777,42 @@
   line-height: 1.5;
   border-radius; 3px;
 
+}
+
+#searchProduct:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#paymentMethod:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#amountPaid:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#serviceCharge:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#customerName:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
+}
+
+#categoryFilter:focus {
+  outline: none !important;
+  border: 1px solid #36b39c !important;
+  box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
 }
 
 </style>
@@ -841,19 +923,26 @@
   <span>Cart</span><hr>
 </div>
 
+
 	<div id="cartItems"></div><hr>
 
     <p>Service Charge: <input type="number" id="serviceCharge" class="form-control form-control-sm" value="0"></p>
 
     <p>Customer: <input type="text" id="customerName" class="form-control form-control-sm" placeholder="Optional"></p>
 
-	<h6 class="mt-3">Payments</h6>
-    
-<select id="paymentMethod" class="form-select form-select-sm mb-2">
-<option value="cash">Cash</option>
-<option value="gcash">GCash</option>
-<option value="card">Card</option>
-</select>
+<h6 class="mt-3">Payments</h6>
+
+<div class="d-flex align-items-center gap-3 mb-2">
+  <select id="paymentMethod" class="form-select form-select-sm">
+    <option value="cash">Cash</option>
+    <option value="gcash">GCash</option>
+    <option value="card">Card</option>
+  </select>
+
+  <input type="number" id="amountPaid" 
+         class="form-control form-control-sm" 
+         placeholder="Amount Paid">
+</div>
 
 <div class="fee-container">
 
@@ -870,6 +959,12 @@
 <div class="fee-row">
 <p>Service:</p>
 <span>₱<span id="serviceTotal">0.00</span></span>
+</div>
+
+<!-- Change -->
+<div class="fee-row">
+  <p>Change:</p>
+  <span>₱<span id="change">0.00</span></span>
 </div>
 
 <hr>
@@ -917,6 +1012,8 @@
 <th>Service</th>
 <th>Grand Total</th>
 <th>Payment</th>
+<th>Amount Paid</th>
+<th>Change</th>
 <th>Date</th>
 
 </tr>
@@ -960,6 +1057,25 @@
 </section>
 
 </div>
+
+<div class="mt-4">
+  <h6>Low Stock / Out of Stock</h6>
+
+  <div class="table-responsive">
+    <table class="table table-bordered" id="lowStockTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+ 	
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -1015,13 +1131,13 @@ const products = [
   
   { sku: "SODA-AMBER", name: "Fruit Soda Amber Glow", price: 69, stock: 100, category: "soda-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Amber.Glow.png" },
   
-  { sku: "SODA-BLU-BREE", name: "Fruit Soda Blush Breeze", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  { sku: "SODA-BLU-BREE", name: "Fruit Soda Blush Breeze", price: 69, stock: 100, category: "soda-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Blush.Breeze.png" },
   
-  { sku: "SODA-PALM-BREE", name: "Fruit Soda Palm Breeze", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  { sku: "SODA-PALM-BREE", name: "Fruit Soda Palm Breeze", price: 69, stock: 100, category: "soda-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Palm.Breeze.png" },
   
-  { sku: "SODA-OCN-MIST", name: "Fruit Soda Ocean Mist", price: 69, stock: 100, category: "soda-series", imgUrl: "" },
+  { sku: "SODA-OCN-MIST", name: "Fruit Soda Ocean Mist", price: 69, stock: 100, category: "soda-series", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Fruit.Soda.Ocean.Mist.png" },
   
-  { sku: "TAO-CHEE",name: "Tao Waffle n’ Cheese (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHEE.png" },
+  { sku: "TAO-CHEE",name: "Tao Cream Cheese (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHEE.png" },
   
   { sku: "TAO-CHOC", name: "Tao Choco n' Crust (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://ayosnegosyoph.com/public/product/MANJU-CHOC.png" },
   
@@ -1039,17 +1155,17 @@ const products = [
   
   { sku: "TAO-CRML-CHEE", name: "Tao Caramel Cheesecake (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Caramel.Cheesecake.Waffles.png" },
   
-  { sku: "TAO-MANG-CHEE", name: "Tao Mango Cheesecake (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mango.Cheesecake.WaffleV2.png" },
+  { sku: "TAO-MANG-CHEE", name: "Tao Mango Cheesecake (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mango.Cheesecake.Waffles.png" },
   
-  { sku: "TAO-MAT-CRM", name: "Tao Matcha Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Cream.Waffles.png" },
+  { sku: "TAO-MAT-CRM", name: "Tao Matcha Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Matcha.Cream.With.Cheese.Waffles.png" },
   
-  { sku: "TAO-HON-ALM", name: "Tao Honey Almond Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Honey.Almond.Cream.Waffles.png" },
+  { sku: "TAO-HON-ALM", name: "Tao Honey Almond Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Honey.Almond.With.Cheese.Waffles.png" },
   
-  { sku: "TAO-PEA-CHR", name: "Tao Peach Charm (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Peach.Charm.Waffles.png" },
+  { sku: "TAO-PEA-CHR", name: "Tao Peach Charm (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Peach.Cream.With.Cheese.Butter.Waffles.png" },
   
-  { sku: "TAO-HAZ-TRF", name: "Tao Hazelnut Truffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Hazelnut.Truffle.Waffles.png" },
+  { sku: "TAO-HAZ-TRF", name: "Tao Hazelnut Truffle (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Hazelnut.Truffle.With.Cheese.Cocoa.Waffles.png" },
   
-  { sku: "TAO-VEL-CRME", name: "Tao Velgian Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Velgian.Cream.Waffles.png" },
+  { sku: "TAO-VEL-CRME", name: "Tao Velgian Cream (10 pcs)", price: 99, stock: 100, category: "tao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Belgian.Cream.With.Berries.Waffles.png" },
   
   { sku: "HAO-BEEF", name: "Hao Beef Taco", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-BEEF.png" },
   
@@ -1057,9 +1173,9 @@ const products = [
   
   { sku: "HAO-PEPP", name: "Hao Pepperoni", price: 49, stock: 100, category: "hao", imgUrl: "https://ayosnegosyoph.com/public/product/MANT-PEPP.png" },
   
-  { sku: "HAO-PEST-CRM", name: "Hao Pesto Cream", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Pesto.Cream.Cheesy.Stuffed.Bread.png" },
+  { sku: "HAO-PEST-CRM", name: "Hao Pesto Cream", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Pesto.Cream.With.Cheese.Cheesy.Stuffed.Bread.png" },
   
-  { sku: "HAO-MUSH-FON", name: "Hao Mushroom & Fontina", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Mushroom.and.Fontina.Stuffed.Rolls.png" },
+  { sku: "HAO-MUSH-FON", name: "Hao Mushroom & Fontina", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Cheesy.Mushroom.With.Cream.Cheesy.Stuffed.Bread.png" },
   
   { sku: "HAO-GAR-HERB", name: "Hao Garlic Herb Supreme", price: 49, stock: 100, category: "hao", imgUrl: "https://raw.githubusercontent.com/guevaraprinceedward/study-projects/refs/heads/master/Garlic.Herb.Fromage.Supreme.Cheesy.Stuffed.Bread.png" },
   
@@ -1088,8 +1204,9 @@ $(document).ready(() => {
   completedOrdersTable = $('#completedOrdersTable').DataTable({ responsive: true });
   renderProducts();
   updateCart();
+  updateLowStockTable();
 
-  // SEARCH & FILTER (reset page)
+  // SEARCH & FILTER ( Reset Page )
   $("#searchProduct").on("input", () => {
     currentPage = 1;
     renderProducts();
@@ -1122,226 +1239,214 @@ $(document).ready(() => {
 
 // ===================== RENDER PRODUCTS =====================
 function renderProducts() {
-  const search = $("#searchProduct").val().toLowerCase();
-  const selectedCategory = $("#categoryFilter").val();
-  $("#productList").empty();
+    const search = $("#searchProduct").val().toLowerCase();
+    const selectedCategory = $("#categoryFilter").val();
+    $("#productList").empty();
 
-  // FILTER
-  const filtered = products.filter(p => {
-    return (
-    (p.name.toLowerCase().includes(search) ||
-     p.sku.toLowerCase().includes(search)) &&
-    (selectedCategory === "all" || p.category === selectedCategory)
-  );
-  });
+    // FILTER
+    const filtered = products.filter(p => {
+        return (
+            (p.name.toLowerCase().includes(search) || p.sku.toLowerCase().includes(search)) &&
+            (selectedCategory === "all" || p.category === selectedCategory)
+        );
+    });
 
-  // TOTAL PAGES
-  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+    // TOTAL PAGES
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+    if (currentPage > totalPages) currentPage = totalPages || 1;
 
-  // FIXED: Pag lumapas ito sa page
-  if (currentPage > totalPages) currentPage = totalPages || 1;
+    // PAGINATION
+    const start = (currentPage - 1) * itemsPerPage;
+    const paginated = filtered.slice(start, start + itemsPerPage);
 
-  // PAGINATION
-  const start = (currentPage - 1) * itemsPerPage;
-  const paginated = filtered.slice(start, start + itemsPerPage);
+    // DISPLAY
+    paginated.forEach(p => {
+        const stockText = p.stock === 0 ? 'Out of stock' : p.stock;
+        $("#productList").append(`
+            <div class="col-md-4">
+                <div class="product-card">
+                    <div class="product-img"><img src="${p.imgUrl}" alt="${p.name}"></div>
+                    <h6>${p.name}</h6>
+                    <p><strong>SKU: ${p.sku}</strong></p>
+                    <p>Php ${p.price.toFixed(2)} | Stock: ${stockText}</p>
+                    <button class="add-btn" ${p.stock === 0 ? 'disabled' : ''} onclick="addToCart('${p.name}')">
+                        <i class="bi bi-bag-plus-fill"></i> Add
+                    </button>
+                </div>
+            </div>
+        `);
+    });
 
-  // DISPLAY
-  paginated.forEach(p => {
-    const stockText = p.stock === 0 ? 'Out of stock' : p.stock;
+    // PAGE INFO
+    $("#pageInfo").text(`Page ${currentPage} of ${totalPages || 1}`);
 
-    $("#productList").append(`
-      <div class="col-md-4">
-        <div class="product-card">
-          <div class="product-img"><img src="${p.imgUrl}" alt="${p.name}"></div>
-          <h6>${p.name}</h6>
-          <p><strong>SKU: ${p.sku}</strong></p>
-          <p>Php ${p.price.toFixed(2)} | Stock: ${stockText}</p>
-          <button class="add-btn" ${p.stock===0?'disabled':''} onclick="addToCart('${p.name}')">
-            <i class="bi bi-bag-plus-fill"></i> Add
-          </button>
-        </div>
-      </div>
-    `);
-  });
-
-  // PAGE INFO
-  $("#pageInfo").text(`Page ${currentPage} of ${totalPages || 1}`);
-
-  // BUTTON STATES
-  $("#prevPage").prop("disabled", currentPage === 1);
-  $("#nextPage").prop("disabled", currentPage === totalPages || totalPages === 0);
+    // BUTTON STATES
+    $("#prevPage").prop("disabled", currentPage === 1);
+    $("#nextPage").prop("disabled", currentPage === totalPages || totalPages === 0);
 }
 
 // ===================== CART FUNCTIONS =====================
-
 function addToCart(name) {
-  const product = products.find(p => p.name === name);
-  if (!product || product.stock === 0) return;
-  const existing = cart.find(i => i.name === name);
-  if (existing) {
-    if (existing.qty >= product.stock) return Swal.fire("Not enough stock","","warning");
-    existing.qty++;
-  } else {
-    cart.push({ name, price: product.price, qty: 1 });
-  }
-  updateCart();
+    const product = products.find(p => p.name === name);
+    if (!product || product.stock === 0) return;
+
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+        if (existing.qty >= product.stock) return Swal.fire("Not enough stock","","warning");
+        existing.qty++;
+    } else {
+        cart.push({ name, price: product.price, qty: 1 });
+    }
+    updateCart();
 }
 
-// Update qty when user types in the input
 function setQty(index, value) {
-  const product = products.find(p => p.name === cart[index].name);
-  let qty = parseInt(value);
-  if (isNaN(qty) || qty < 1) qty = 1;
-  if (qty > product.stock) qty = product.stock;
-  cart[index].qty = qty;
-  updateCart();
+    const product = products.find(p => p.name === cart[index].name);
+    let qty = parseInt(value);
+    if (isNaN(qty) || qty < 1) qty = 1;
+    if (qty > product.stock) qty = product.stock;
+    cart[index].qty = qty;
+    updateCart();
 }
 
-// Remove item from cart
 function removeItem(index) {
-  cart.splice(index, 1);
-  updateCart();
+    cart.splice(index, 1);
+    updateCart();
 }
 
 // ===================== UPDATE CART =====================
 function updateCart() {
-  let subtotal = 0;
-  let html = "";
+    let subtotal = 0;
+    let html = "";
 
-  if (cart.length) {
+    if (cart.length) {
+        html += `<table class="table table-sm">
+            <thead>
+                <tr>
+                    <th style="background-color:#ededed">Product</th>
+                    <th style="background-color:#ededed">Qty</th>
+                    <th style="background-color:#ededed">Price</th>
+                    <th style="background-color:#ededed">Total</th>
+                    <th style="background-color:#ededed">Action</th>
+                </tr>
+            </thead>
+            <tbody>`;
 
-    html += `<table class="table table-sm">
-      <thead>
-        <tr>
-          <th style="background-color: #ededed;">Product</th>
-          <th style="background-color: #ededed;">Qty</th>
-          <th style="background-color: #ededed;">Price</th>
-          <th style="background-color: #ededed;">Total</th>
-          <th style="background-color: #ededed;">Action</th>
-        </tr>
-      </thead>
-      <tbody>`;
+        cart.forEach((item, i) => {
+            const product = products.find(p => p.name === item.name);
+            const total = item.price * item.qty;
+            subtotal += total;
 
-    cart.forEach((item, i) => {
-      const product = products.find(p => p.name === item.name);
-      const total = item.price * item.qty;
-      subtotal += total;
+            html += `<tr>
+                <td>${item.name}</td>
+                <td><input type="number" min="1" max="${product.stock}" value="${item.qty}" style="width:50px; text-align:center;" onchange="setQty(${i}, this.value)"></td>
+                <td>Php ${item.price.toFixed(2)}</td>
+                <td>Php ${total.toFixed(2)}</td>
+                <td><button class="btn btn-sm btn-danger" style="font-size: 10px;" onclick="removeItem(${i})"><i class="bi bi-x-lg"></i></button></td>
+            </tr>`;
+        });
 
-   html += `<tr>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">${item.name}</div></td>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">
-          <input type="number" min="1" max="${product.stock}" value="${item.qty}" 
-                 style="width:50px; border-radius: 8px; text-align:center;" onchange="setQty(${i}, this.value)">
-        </div></td>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">Php ${item.price.toFixed(2)}</div></td>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">Php ${total.toFixed(2)}</div></td>
-        <td><div style="padding:8px 12px; display:flex; align-items:center; justify-content:center; gap:8px;">
-          <button class="qty-btn-ctm" style="background:#e74c3c;" onclick="removeItem(${i})"><i class="bi bi-x-lg"></i></button>
-        </div></td>
-      </tr>`;
-    });
+        html += `</tbody></table>`;
+    } else {
+        html = `<table class="table table-sm">
+            <thead>
+                <tr>
+                    <th style="background-color:#ededed">Product</th>
+                    <th style="background-color:#ededed">Qty</th>
+                    <th style="background-color:#ededed">Price</th>
+                    <th style="background-color:#ededed">Total</th>
+                    <th style="background-color:#ededed">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="text-align:center; padding:20px; color:#999;">No items yet.</td>
+                </tr>
+            </tbody>
+        </table>`;
+    }
 
-    html += `</tbody></table>`;
-    
-} else {
+    $("#cartItems").html(html);
 
-  html += `<table class="table table-sm">
-    <thead>
-      <tr>
-        <th style="background-color: #ededed;">Product</th>
-        <th style="background-color: #ededed;">Qty</th>
-        <th style="background-color: #ededed;">Price</th>
-        <th style="background-color: #ededed;">Total</th>
-        <th style="background-color: #ededed;">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td colspan="5" style="text-align:center; background-color: #f9f9f9; padding:20px; color:#999;">
-          No items yet.
-        </td>
-      </tr>
-    </tbody>
-  </table>`;
+    // COMPUTATION
+    const service = parseFloat($("#serviceCharge").val()) || 0;
+    const paymentMethod = $("#paymentMethod").val();
+    const taxRate = paymentMethod === "cash" ? 0.10 : paymentMethod === "gcash" ? 0.20 : 0.35;
+    const tax = subtotal * taxRate;
+    const grandTotal = subtotal + tax + service;
 
+    const amountPaid = parseFloat($("#amountPaid").val()) || 0;
+    const change = amountPaid - grandTotal;
 
-  }
-
-  $("#cartItems").html(html);
-
-  // COMPUTATION
-  const service = parseFloat($("#serviceCharge").val()) || 0;
-  const method = $("#paymentMethod").val();
-  const taxRate = method === "cash" ? 0.10 : method === "gcash" ? 0.20 : 0.35;
-  const tax = subtotal * taxRate;
-  const grandTotal = subtotal + tax + service;
-
-  $("#subtotal").text(subtotal.toFixed(2));
-  $("#tax").text(tax.toFixed(2));
-  $("#serviceTotal").text(service.toFixed(2));
-  $("#grandTotal").text(grandTotal.toFixed(2));
+    $("#subtotal").text(subtotal.toFixed(2));
+    $("#tax").text(tax.toFixed(2));
+    $("#serviceTotal").text(service.toFixed(2));
+    $("#grandTotal").text(grandTotal.toFixed(2));
+    $("#change").text(change >= 0 ? change.toFixed(2) : "0.00");
 }
 
 // ===================== CHECKOUT =====================
 function checkout() {
-  if (!cart.length) return Swal.fire("Cart is empty","","warning");
+    if (!cart.length) return Swal.fire("Cart is empty","","warning");
 
-  // ✅ VALIDATION
-  const customer = $("#customerName").val().trim();
-  const payment = $("#paymentMethod").val();
-  const serviceInput = $("#serviceCharge").val();
+    const customer = $("#customerName").val().trim();
+    const payment = $("#paymentMethod").val();
+    const service = parseFloat($("#serviceCharge").val()) || 0;
+    const amountPaid = parseFloat($("#amountPaid").val()) || 0;
 
-  if (!customer) return Swal.fire("Please enter customer name","","warning");
-  if (!payment) return Swal.fire("Please select a payment method","","warning");
-  if (serviceInput === "" || isNaN(parseFloat(serviceInput))) 
-    return Swal.fire("Please enter a valid service charge","","warning");
+    if (!customer) return Swal.fire("Please enter customer name","","warning");
+    if (!payment) return Swal.fire("Please select a payment method","","warning");
 
-  // Confirm checkout
-  Swal.fire({
-    title: "Confirm Checkout?",
-    icon: "question",
-    showCancelButton: true
-  }).then(res => {
-    if (!res.isConfirmed) return;
+    Swal.fire({
+        title: "Confirm Checkout?",
+        icon: "question",
+        showCancelButton: true
+    }).then(res => {
+        if (!res.isConfirmed) return;
 
-    const subtotal = parseFloat($("#subtotal").text());
-    const tax = parseFloat($("#tax").text());
-    const service = parseFloat(serviceInput) || 0;
-    const grand = parseFloat($("#grandTotal").text());
-    const date = new Date();
+        const subtotal = parseFloat($("#subtotal").text());
+        const tax = parseFloat($("#tax").text());
+        const grandTotal = subtotal + tax + service;
+        const change = amountPaid - grandTotal;
+        const date = new Date();
 
-    // Save order
-    salesData.push({
-      customer,
-      items: cart.map(i => ({ name: i.name, qty: i.qty })),
-      subtotal, tax, service, grand, payment, date
+        // Save order
+        salesData.push({
+            customer,
+            items: cart.map(i => ({ name: i.name, qty: i.qty })),
+            subtotal, tax, service, grandTotal, payment, amountPaid, change, date
+        });
+
+        // Reduce stock
+        cart.forEach(c => {
+            const p = products.find(pr => pr.name === c.name);
+            if (p) p.stock -= c.qty;
+            updateLowStockTable();
+        });
+
+        // Add to completed orders table
+        completedOrdersTable.row.add([
+            completedOrdersTable.rows().count() + 1,
+            customer,
+            cart.map(i => `${i.name} x${i.qty}`).join(", "),
+            subtotal.toFixed(2),
+            tax.toFixed(2),
+            service.toFixed(2),
+            grandTotal.toFixed(2),
+            payment.toUpperCase(),
+            amountPaid.toFixed(2),
+            change.toFixed(2),
+            date.toLocaleString()
+        ]).draw();
+
+        Swal.fire("Payment Successful","","success");
+
+        // Clear cart
+        cart = [];
+        updateCart();
+        renderProducts();
+        updateAnalytics();
     });
-
-    // Reduce stock
-    cart.forEach(c => {
-      const p = products.find(pr => pr.name === c.name);
-      if (p) p.stock -= c.qty;
-    });
-
-    // Add to completed orders table
-    completedOrdersTable.row.add([
-      completedOrdersTable.rows().count()+1,
-      customer,
-      cart.map(i => `${i.name} x${i.qty}`).join(", "),
-      subtotal.toFixed(2),
-      tax.toFixed(2),
-      service.toFixed(2),
-      grand.toFixed(2),
-      payment.toUpperCase(),
-      date.toLocaleString()
-    ]).draw();
-
-    Swal.fire("Payment Successful","","success");
-    cart = [];
-    updateCart();
-    renderProducts();
-    updateAnalytics();
-  });
 }
 
 // ===================== CHARTS =====================
@@ -1396,6 +1501,73 @@ function formatName(name) {
   return result;
 }
 
+function updateLowStockTable() {
+  let html = "";
+
+  products.forEach((p, index) => {
+
+    if (p.stock <= 10) { // LOW STOCK threshold ( You can change it if you want )
+      
+      let status = p.stock === 0 
+        ? `<span style="color:red; font-weight:bold;">Out of Stock</span>`
+        : `<span style="color:orange;">Low Stock</span>`;
+
+      html += `
+        <tr>
+          <td>${p.name}</td>
+          <td>${p.stock}</td>
+          <td>${status}</td>
+          <td>
+            <button class="btn btn-sm btn-success" onclick="refillStock(${index})">
+              Refill
+            </button>
+          </td>
+        </tr>
+      `;
+    }
+
+  });
+
+  if (!html) {
+    html = `<tr><td colspan="4" class="text-center text-muted">All products are well stocked</td></tr>`;
+  }
+
+  $("#lowStockTable tbody").html(html);
+}
+
+
+
+function refillStock(index) {
+  Swal.fire({
+    title: "Refill Stock",
+    input: "number",
+    inputLabel: "Enter quantity to add",
+    inputAttributes: {
+      min: 1
+    },
+    showCancelButton: true
+  }).then(result => {
+
+    if (result.isConfirmed) {
+      const qty = parseInt(result.value);
+
+      if (isNaN(qty) || qty <= 0) {
+        return Swal.fire("Invalid quantity","","error");
+      }
+
+      products[index].stock += qty;
+
+      Swal.fire("Stock Updated","","success");
+
+      renderProducts();
+      updateLowStockTable();
+    }
+
+  });
+}
+
+</script>
+
 </script>
 
 <!-- ibang scripts mo -->
@@ -1410,13 +1582,13 @@ function formatName(name) {
 <!-- GITHUB: IMPLEMENT ACCOUNT -->
 
 
-<!-- POS SYSTEM NEW UPDATE VERSION 10.1 -->
+<!-- POS SYSTEM NEW UPDATE VERSION 10.3-->
 <!-- NEW CHANGES VARIANTS IN SYSTEMS ( FIXED ) -->
-<!-- NEW CHANGES: SIDEBAR PROFILE & BRAND LOGO -->
+<!-- NEW CHANGES: SIDEBAR PROFILE & BRAND LOGO & LOW STOCK CATEGORY SYSTEM & PRODUCT RE-FILL CATEGORY -->
 <!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
 <!-- NEW SYSTEM ( SALES ANALYTICS ) -->
 <!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
-<!-- NEW CREATED AT MAR 31 2026: 12:00AM -->
+<!-- NEW CREATED AT APR 2 2026: 4:24AM -->
 <!-- PESONAL TEST PROJECT FOR PABLO -->
 
 </body>
