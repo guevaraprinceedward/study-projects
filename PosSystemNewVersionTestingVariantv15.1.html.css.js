@@ -13,61 +13,13 @@
 <link href="https://github.com/guevaraprinceedward/study-projects/tree/master">
 <style>
 
-
-  body {
-
-	background: #eef2f5; /* mas soft kaysa pure white */
-  	font-family:'Segoe UI', sans-serif;
-  	font-size:14px;
-  	margin:0;
-    
-
-  }
-  
-.brand-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 15px;
-  background: #0f2233;
-  border-left: 3px solid #4dd0e1;
-  margin-bottom: 15px;
-}
-
-.brand-icon {
-  color: #4dd0e1;
-  font-size: 14px;
-}
-
-.brand-title {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Coffee POS Dashboard</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
-<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link href="https://github.com/guevaraprinceedward/study-projects/tree/master">
-<style>
-
   body {
 
 	background: #eef2f5;
   	font-family:'Segoe UI', sans-serif;
   	font-size:14px;
   	margin:0;
+    overflow-x: hidden;
     
 
   }
@@ -212,7 +164,7 @@
   .add-btn:hover {
   
   	transform: translateY(-10px);
-    transtion: 0.8s ease;
+    transition: 0.8s ease;
   
   }
   
@@ -815,6 +767,54 @@
   box-shadow: 0 0 0 4px rgba(54, 179, 156, 0.25) !important;
 }
 
+#lowStockTable thead th {
+  font-size: 13px;
+  text-align: center;
+}
+
+#lowStockTable tbody td {
+  text-align: center;
+  font-size: 13px;
+}
+
+.low-stock-safe {
+  background-color: #d4edda !important; /* greenish */
+  color: #155724;
+}
+
+.low-stock-warning {
+  background-color: #fff3cd !important; /* yellow/orange */
+  color: #856404;
+}
+
+.low-stock-critical {
+  background-color: #f8d7da !important; /* red */
+  color: #721c24;
+}
+
+.stock-badge {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.card-header {
+  font-size: 14px;
+}
+
+#lowStockTable {
+  width: 100% !important;
+  table-layout: auto !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+
 </style>
 </head>
 <body>
@@ -847,8 +847,28 @@
     <i class="bi bi-bar-chart-line me-2 nav-icon"></i>
     Sales Analytics
   </a>
-</div>
+  
+  <a href="#lowStockTable" class="d-flex align-items-center">
+  <!-- Warning Icon -->
+  <i class="bi bi-exclamation-triangle-fill me-2" style="color: #FFA500; position: relative; font-size: 1rem;">
+    <!-- Optional small badge inside icon -->
+    <span style="
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #FF4C4C;
+      color: white;
+      font-size: 0.3em;
+      font-weight: bold;
+      padding: 1px 3px;
+      border-radius: 50%;
+      box-shadow: 0 0 2px rgba(0,0,0,0.3);
+    ">!</span>
+  </i>
+  Low Stock
+</a>
 
+</div>
 </div>
 
 <div class="main">
@@ -981,7 +1001,7 @@
     <button class="btn btn-sm checkout-btn" id="checkoutBtn"><i class="bi bi-check-lg" style="margin-right: 1.5px;"></i>Checkout</button>
   </div>
   <div class="col d-flex justify-content-end">
-    <button class="btn btn-btm clear-btn" id="clearBtn"><i class="bi bi-trash" style="margin-right: 1.5px;"></i>Clear</button>
+    <button class="btn btn-sm clear-btn" id="clearBtn"><i class="bi bi-trash" style="margin-right: 1.5px;"></i>Clear</button>
   </div>
 </div>
 
@@ -1056,25 +1076,47 @@
 
 </section>
 
+<div class="mt-4">
+  <div class="card shadow-sm">
+    
+    <div class="card-header bg-light">
+      <strong>⚠ Low Stock Alert</strong>
+    </div>
+
+    <div class="table-responsive p-3">
+      <table class="table table-bordered mb-0" id="lowStockTable">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>On Hand</th>
+            <th>Reorder Level</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="6" class="text-center text-muted">
+              No low stock products.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+<div class="d-flex justify-content-between align-items-center mt-3 px-2">
+  <button class="btn btn-sm btn-outline-secondary" id="lowPrev">Previous</button>
+  <span id="lowPageInfo" style="font-size:13px;"></span>
+  <button class="btn btn-sm btn-outline-secondary" id="lowNext">Next</button>
 </div>
 
-<div class="mt-4">
-  <h6>Low Stock / Out of Stock</h6>
+    </div>
 
-  <div class="table-responsive">
-    <table class="table table-bordered" id="lowStockTable">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Stock</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
   </div>
 </div>
+
+</div>
+
  	
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -1386,6 +1428,7 @@ function updateCart() {
 }
 
 // ===================== CHECKOUT =====================
+// ===================== CHECKOUT =====================
 function checkout() {
     if (!cart.length) return Swal.fire("Cart is empty","","warning");
 
@@ -1448,6 +1491,7 @@ function checkout() {
         updateAnalytics();
     });
 }
+
 
 // ===================== CHARTS =====================
 // ===================== ANALYTICS =====================
@@ -1566,9 +1610,78 @@ function refillStock(index) {
   });
 }
 
+// ===================== LOW STOCK TABLE =====================
+function renderLowStockTable() {
+  const tbody = $("#lowStockTable tbody");
+  tbody.empty();
+
+  const lowStockProducts = products.filter(p => p.stock <= 20); // you can adjust threshold
+
+  if(lowStockProducts.length === 0) {
+    tbody.append(`<tr>
+      <td colspan="6" class="text-center text-muted">No low stock products.</td>
+    </tr>`);
+    return;
+  }
+
+  lowStockProducts.forEach(p => {
+    let rowClass = "";
+    if(p.stock <= p.reorderLevel / 2) {
+      rowClass = "low-stock-critical";
+    } else if(p.stock <= p.reorderLevel) {
+      rowClass = "low-stock-warning";
+    } else {
+      rowClass = "low-stock-safe";
+    }
+
+    tbody.append(`
+      <tr class="${rowClass}">
+        <td>${p.sku}</td>
+        <td>${p.name}</td>
+        <td>${p.sku}</td>
+        <td>
+          <span class="stock-badge" style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:5px;
+              background:${rowClass === 'low-stock-critical' ? '#f8d7da' :
+                          rowClass === 'low-stock-warning' ? '#fff3cd' : '#d4edda'}"></span>
+          ${p.stock}
+        </td>
+        <td>${p.reorderLevel}</td>
+        <td>
+          <button class="table-btn btn btn-sm btn-success" onclick="refillStock('${p.sku}')">Restock</button>
+        </td>
+      </tr>
+    `);
+  });
+}
+
+// ===================== REFILL STOCK =====================
+function refillStock(index) {
+    const product = products[index];
+    if (!product) return;
+
+    Swal.fire({
+        title: `Refill ${product.name}`,
+        input: "number",
+        inputLabel: "Enter quantity to add",
+        inputAttributes: { min: 1 },
+        showCancelButton: true
+    }).then(result => {
+        if (!result.isConfirmed) return;
+
+        const qty = parseInt(result.value);
+        if (isNaN(qty) || qty <= 0) return Swal.fire("Invalid quantity","","error");
+
+        product.stock += qty;
+
+        Swal.fire("Stock Updated","","success");
+
+        renderProducts();       // Refresh product cards
+        updateLowStockTable();  // Refresh low stock table
+        updateCart();           // Update cart if any product was in cart
+    });
+}
 </script>
 
-</script>
 
 <!-- ibang scripts mo -->
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
