@@ -1802,7 +1802,7 @@ function renderLowStockTable() {
         <td>${p.sku}</td>
         <td>${p.stock}</td>
         <td>${p.reorderLevel}</td>
-        <td>${status}</td> <!-- ✅ STATUS COLUMN -->
+        <td>${status}</td> <!-- STATUS COLUMN -->
         <td>
           <button class="btn btn-sm btn-success" onclick="refillStock(${index})">
             Refill
@@ -1834,8 +1834,8 @@ function refillStock(index) {
 
         Swal.fire("Stock Updated","","success");
 
-        renderProducts();       // Refresh product cards
-        updateLowStockTable();  // Refresh low stock table
+        renderProducts();       // Refresh the Product Cards
+        updateLowStockTable();  // Refresh Low Stock Table
         updateCart();           // Update cart if any product was in cart
     });
 }
