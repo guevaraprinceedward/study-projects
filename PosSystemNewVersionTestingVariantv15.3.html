@@ -1372,6 +1372,11 @@ products.forEach(p => {
 let cart = [];
 let salesData = [];
 
+function updateTotalSales() {
+    let total = salesData.reduce((acc, order) => acc + order.grandTotal, 0);
+    $("#totalSalesDisplay").text(`₱${total.toFixed(2)}`);
+}
+
 let currentPage = 1;
 const itemsPerPage = 6; // 6 products per page
 
@@ -1385,6 +1390,7 @@ $(document).ready(() => {
   renderProducts();
   updateCart();
   updateLowStockTable();
+  updateTotalSales();
 
   // SEARCH & FILTER ( Reset Page )
   $("#searchProduct").on("input", () => {
@@ -1597,6 +1603,8 @@ function checkout() {
             items: cart.map(i => ({ name: i.name, qty: i.qty })),
             subtotal, tax, service, grandTotal, payment, amountPaid, change, date
         });
+        
+        updateTotalSales();
 
         // Reduce stock
         cart.forEach(c => {
@@ -1637,11 +1645,15 @@ function updateAnalytics() {
   const productSales = {};
   const dailyTransactions = {Monday:0,Tuesday:0,Wednesday:0,Thursday:0,Friday:0,Saturday:0,Sunday:0};
 
-  salesData.forEach(order => {
+salesData.forEach(order => {
+
     const day = order.date.toLocaleDateString('en-US', { weekday: 'long' });
     if (dailyTransactions[day] !== undefined) dailyTransactions[day]++;
-    order.items.forEach(i => productSales[i.name] = (productSales[i.name] || 0) + i.qty);
-  });
+
+    order.items.forEach(i => 
+        productSales[i.name] = (productSales[i.name] || 0) + i.qty
+    );
+});
 
   const top6 = Object.entries(productSales).sort((a,b)=>b[1]-a[1]).slice(0,6);
   $("#topProductsList").html(top6.map(p=>`<li class="list-group-item d-flex justify-content-between">${p[0]} <span>${p[1]} sold</span></li>`).join(""));
