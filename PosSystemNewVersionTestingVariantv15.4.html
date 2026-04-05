@@ -884,6 +884,37 @@
   font-size: 12px;
 }
 
+#topProductsChart,
+#dailyTransactionsChart {
+  height: 100% !important;
+}
+
+#topProductsChart,
+#dailyTransactionsChart {
+  width: 100% !important;
+}
+
+/* Container ng charts lang */
+#topProductsChart,
+#dailyTransactionsChart {
+  display: block;
+}
+
+#topProductsChart,
+#dailyTransactionsChart {
+  max-height: 300px;
+}
+
+#dailyTransactionsChart canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#topProductsChart canvas {
+  width: 100% !important;
+  height: 100% !important 
+}
+
 </style>
 </head>
 <body>
@@ -1166,15 +1197,27 @@
 
 <div class="row mt-4">
 
-<div class="col-md-6">
-<h6>Top 5 Products (Units)</h6>
-<canvas id="topProductsChart"></canvas>
-</div>
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <strong>📊 Top 5 Products (Units)</strong>
+      </div>
+      <div class="card-body">
+        <canvas id="topProductsChart"></canvas>
+      </div>
+    </div>
+  </div>
 
-<div class="col-md-6">
-<h6>Daily Transactions</h6>
-<canvas id="dailyTransactionsChart"></canvas>
-</div>
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <strong>📅 Daily Transactions</strong>
+      </div>
+      <div class="card-body">
+        <canvas id="dailyTransactionsChart"></canvas>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -1227,6 +1270,8 @@
  	
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script>
@@ -1700,7 +1745,10 @@ function updateLowStockTable() {
 
   const lowStockProducts = products.filter(p => p.stock <= p.reorderLevel);
 
-  lowStockProducts.forEach((p, index) => {
+  lowStockProducts.forEach((p) => {
+
+    // ✅ kuha ng tamang index sa original array
+    const realIndex = products.findIndex(prod => prod.sku === p.sku);
 
     let status = "";
     if (p.stock === 0) {
@@ -1713,14 +1761,14 @@ function updateLowStockTable() {
 
     html += `
       <tr>
-        <td>${index + 1}</td> <!-- ID -->
+        <td>${realIndex + 1}</td>
         <td>${p.name}</td>
         <td>${p.sku}</td>
-        <td>${p.stock}</td> <!-- ON HAND -->
-        <td>${p.reorderLevel}</td> <!-- REORDER LEVEL -->
-        <td>${status}</td> <!-- STATUS -->
+        <td>${p.stock}</td>
+        <td>${p.reorderLevel}</td>
+        <td>${status}</td>
         <td>
-          <button class="btn btn-sm btn-success btn-refill-action" onclick="refillStock(${index})">
+          <button class="btn btn-sm btn-success btn-refill-action" onclick="refillStock(${realIndex})">
             Refill
           </button>
         </td>
@@ -1741,79 +1789,7 @@ function updateLowStockTable() {
   $("#lowStockTable tbody").html(html);
 }
 
-
-
-function refillStock(index) {
-    const product = products[index];
-    if (!product) return;
-
-    Swal.fire({
-        title: `Refill ${product.name}`,
-        input: "number",
-        inputLabel: "Enter quantity to add",
-        inputAttributes: { min: 1 },
-        showCancelButton: true
-    }).then(result => {
-        if (!result.isConfirmed) return;
-
-        const qty = parseInt(result.value);
-        if (isNaN(qty) || qty <= 0) return Swal.fire("Invalid quantity","","error");
-
-        product.stock += qty;
-
-        Swal.fire("Stock Updated","","success");
-
-        renderProducts();       // Refresh product cards
-        updateLowStockTable();  // Refresh low stock table
-        updateCart();           // Update cart if any product was in cart
-    });
-}
 // ===================== LOW STOCK TABLE =====================
-function renderLowStockTable() {
-  const tbody = $("#lowStockTable tbody");
-  tbody.empty();
-
-  const lowStockProducts = products.filter(p => p.stock <= p.reorderLevel);
-
-  if (lowStockProducts.length === 0) {
-    tbody.append(`<tr>
-      <td colspan="7" class="text-center text-muted">
-        No low stock products.
-      </td>
-    </tr>`);
-    return;
-  }
-
-  lowStockProducts.forEach((p, index) => {
-
-    let status = "";
-    if (p.stock === 0) {
-      status = `<span class="badge bg-danger">Out of Stock</span>`;
-    } else if (p.stock <= p.reorderLevel / 2) {
-      status = `<span class="badge bg-danger">Critical</span>`;
-    } else {
-      status = `<span class="badge bg-warning text-dark">Low Stock</span>`;
-    }
-
-    tbody.append(`
-      <tr>
-        <td>${index + 1}</td>
-        <td>${p.name}</td>
-        <td>${p.sku}</td>
-        <td>${p.stock}</td>
-        <td>${p.reorderLevel}</td>
-        <td>${status}</td> <!-- STATUS COLUMN -->
-        <td>
-          <button class="btn btn-sm btn-success" onclick="refillStock(${index})">
-            Refill
-          </button>
-        </td>
-      </tr>
-    `);
-  });
-}
-
-// ===================== REFILL STOCK =====================
 function refillStock(index) {
     const product = products[index];
     if (!product) return;
@@ -1828,15 +1804,17 @@ function refillStock(index) {
         if (!result.isConfirmed) return;
 
         const qty = parseInt(result.value);
-        if (isNaN(qty) || qty <= 0) return Swal.fire("Invalid quantity","","error");
+        if (isNaN(qty) || qty <= 0) {
+            return Swal.fire("Invalid quantity","","error");
+        }
 
         product.stock += qty;
 
         Swal.fire("Stock Updated","","success");
 
-        renderProducts();       // Refresh the Product Cards
-        updateLowStockTable();  // Refresh Low Stock Table
-        updateCart();           // Update cart if any product was in cart
+        renderProducts();
+        updateLowStockTable();
+        updateCart();
     });
 }
 </script>
@@ -1845,8 +1823,6 @@ function refillStock(index) {
 <!-- ibang scripts mo -->
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- main javascript file mo -->
 <script src="pos.js"></script>
@@ -1860,7 +1836,7 @@ function refillStock(index) {
 <!-- NEW SYSTEM ( TOP 5 PRODUCTS (UNITS) ) -->
 <!-- NEW SYSTEM ( SALES ANALYTICS ) -->
 <!-- NEW SYSTEM ( DAILY TRANSACTIONS ) -->
-<!-- NEW CREATED AT APR 3 2026: 8:06PM -->
+<!-- NEW CREATED AT APR 3 2026: 4:33AM -->
 <!-- PESONAL TEST PROJECT FOR PABLO / MONTE CARLO TECHNOLOGIES -->
 
 </body>

@@ -1548,32 +1548,44 @@ function formatName(name) {
 function updateLowStockTable() {
   let html = "";
 
-  products.forEach((p, index) => {
+  const lowStockProducts = products.filter(p => p.stock <= p.reorderLevel);
 
-    if (p.stock <= 10) { // LOW STOCK threshold ( You can change it if you want )
-      
-      let status = p.stock === 0 
-        ? `<span style="color:red; font-weight:bold;">Out of Stock</span>`
-        : `<span style="color:orange;">Low Stock</span>`;
+  lowStockProducts.forEach((p, index) => {
 
-      html += `
-        <tr>
-          <td>${p.name}</td>
-          <td>${p.stock}</td>
-          <td>${status}</td>
-          <td>
-            <button class="btn btn-sm btn-success" onclick="refillStock(${index})">
-              Refill
-            </button>
-          </td>
-        </tr>
-      `;
+    let status = "";
+    if (p.stock === 0) {
+      status = `<span class="badge bg-danger btn-out-of-stock-status">Out of Stock</span>`;
+    } else if (p.stock <= p.reorderLevel / 2) {
+      status = `<span class="badge bg-danger btn-critical-status">Critical</span>`;
+    } else {
+      status = `<span class="badge bg-warning text-dark btn-low-stock-status">Low Stock</span>`;
     }
 
+    html += `
+      <tr>
+        <td>${index + 1}</td> <!-- ID -->
+        <td>${p.name}</td>
+        <td>${p.sku}</td>
+        <td>${p.stock}</td> <!-- ON HAND -->
+        <td>${p.reorderLevel}</td> <!-- REORDER LEVEL -->
+        <td>${status}</td> <!-- STATUS -->
+        <td>
+          <button class="btn btn-sm btn-success btn-refill-action" onclick="refillStock(${index})">
+            Refill
+          </button>
+        </td>
+      </tr>
+    `;
   });
 
   if (!html) {
-    html = `<tr><td colspan="4" class="text-center text-muted">All products are well stocked</td></tr>`;
+    html = `
+      <tr>
+        <td colspan="7" class="text-center text-muted">
+          No low stock products.
+        </td>
+      </tr>
+    `;
   }
 
   $("#lowStockTable tbody").html(html);
