@@ -645,7 +645,6 @@
 .profile-container {
   text-align: center;
   background: #1f2d3d;
-  margin-bottom: 10px;
   padding: 10px;
   width: 100%;
 }
@@ -1000,6 +999,30 @@
   transform: scale(1.1);
 }
 
+.active-branch-title {
+
+	font-size: 12px;
+    font-weight: 550;
+    margin-bottom: 5px;
+    color: #BFC9D1;
+    
+}
+
+.sidebar-section {
+
+	padding: 10px;
+    
+}
+
+.branch-select {
+  max-width: 200px;   /* liitan width */
+  height: 32px;       /* liitan height */
+  font-size: 13px;    /* liit text */
+  padding: 2px 8px;   /* compact spacing */
+  border-radius: 6px;
+  font-weight: 550;
+}
+
 </style>
 </head>
 <body>
@@ -1033,9 +1056,9 @@
 
 </div>
 
-	<div>
-    
-  <select class="form-select" style="max-width:200px;">
+	<div class="sidebar-section">
+    <label class="active-branch-title"> Active Branch </label>
+  <select class="form-select branch-select">
   
     <option value="1">LAKE</option>
     <option value="2">PASEO</option>
